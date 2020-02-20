@@ -30,6 +30,7 @@ export class Cart {
 	}
 
 	set(value) {
+		console.log(value);
 		const stringifiedValue = JSON.stringify(value);
 		document.cookie = `${this.key}=${stringifiedValue}`;
 	}
