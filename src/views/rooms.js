@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { roomsService } from "../common/rooms-service";
-import Cart from "../cart/cart";
+import { Cart } from "../cart/cart";
 import { roomsList } from "./rooms-list";
 
 export const rooms = () => {
@@ -11,9 +11,11 @@ export const rooms = () => {
 	// .append('<p>Lorem ipsum dolor sit amet...</p>')
 	const cart = new Cart();
 
-	const setCookies = name => {
+	const setCookies = (name, price) => {
 		console.log(name);
-		cart.get();
+		const result = cart.get();
+		result.push({ name, price });
+		cart.set(result);
 	};
 
 	// $(".add-to-cart").on("click", ());
@@ -42,7 +44,8 @@ export const rooms = () => {
               <li>1 guest</li>
             </ul>
             <button type="button" class="btn btn-lg btn-block btn-outline-primary add-to-cart" onclick='()=>{${setCookies(
-							item.name
+							item.name,
+							item.price
 						)}}'>Rezerwuj online<i class="fas fa-shopping-cart" ></i></button>
           </div>
         </div>`);
