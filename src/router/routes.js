@@ -1,4 +1,4 @@
-import { home, rooms, treatments, booking, basketpage } from "../views";
+import { home, rooms, treatments, booking, signup, basketpage } from "../views";
 
 export const routes = [
 	{ name: "Home", path: "/", date: {}, component: home },
@@ -10,5 +10,10 @@ export const routes = [
 		component: treatments
 	},
 	{ name: "Booking", path: "/booking", date: {}, component: booking },
-	{ name: "Basket", path: "/basket", date: {}, component: basketpage }
+	{
+		name: "SignUp",
+		path: "/signup",
+		date: {},
+		component: signup
+	}
 ];

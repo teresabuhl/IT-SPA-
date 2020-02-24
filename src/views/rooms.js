@@ -11,10 +11,16 @@ export const rooms = () => {
 	// .append('<p>Lorem ipsum dolor sit amet...</p>')
 	const cart = new Cart();
 
-	const setCookies = (name, price) => {
+	const setCookies = e => {
+		const { name } = e.target;
 		console.log(name);
+		const offerName = name.split(";")[0];
+		const offerPrice = name.split(";")[1];
+		console.log(offerName, offerPrice);
+		// console.log(name);
 		const result = cart.get();
-		result.push({ name, price });
+		console.log(result);
+		result.push({ name: offerName, price: offerPrice });
 		cart.set(result);
 	};
 
@@ -29,26 +35,30 @@ export const rooms = () => {
 
 		pokoje.map((item, key) => {
 			// return
-			fragment.append(`
-        <div class="card-deck mb-4 text-center">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-              <h4 class="my-0 font-weight-normal">${item.name}</h4>
-            </div>
-            <div class="card-body">
-              <h1 class="card-title pricing-card-title">${
-								item.price
-							} zł<small class="text-muted">/ noc</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>1 bed</li>
-              <li>1 guest</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary add-to-cart" onclick='()=>{${setCookies(
-							item.name,
-							item.price
-						)}}'>Rezerwuj online<i class="fas fa-shopping-cart" ></i></button>
-          </div>
-        </div>`);
+			let wrapper = $(`<div class="card-deck mb-4 text-center"></div> `);
+			let card = $(`<div class="card mb-4 shadow-sm">
+		</div>`);
+			let header = $(`<div class="card-header">
+			<h4 class="my-0 font-weight-normal">${item.name}</h4>
+		</div>`);
+			let bodyCard = $(` <div class="card-body">
+		<h1 class="card-title pricing-card-title">${item.price} zł<small class="text-muted">/ noc</small></h1>
+	<ul class="list-unstyled mt-3 mb-4">
+		<li>1 bed</li>
+		<li>1 guest</li>
+	</ul> </div>`);
+			let btn = $(
+				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}">Rezerwuj online<i class='fas fa - shopping - cart' ></i></button>`
+			);
+			$(btn).on("click", e => {
+				setCookies(e);
+			});
+
+			$(bodyCard).append(btn);
+			$(wrapper).append(card);
+			$(card).append(header);
+			$(card).append(bodyCard);
+			fragment.append(wrapper);
 		});
 		// ${Cart.set(
 		// item.name

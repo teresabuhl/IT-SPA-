@@ -1,6 +1,16 @@
 {
-  "users": [],
-  "rooms": [{
+  "users": [
+    {
+      "id": 1,
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": 2
+    }
+  ],
+  "rooms": [
+    {
       "id": 1,
       "name": "Pokój jednoosobowy",
       "beds": 1,
@@ -23,13 +33,14 @@
     },
     {
       "id": 4,
-      "name": "Pokój czteroosobobwy",
+      "name": "Pokój czteroosobowy",
       "beds": 2,
       "guests": 4,
       "price": 340
     }
   ],
-  "treatments": [{
+  "treatments": [
+    {
       "id": 1,
       "name": "Masaż rozgrzanym monitorem",
       "area": "back",

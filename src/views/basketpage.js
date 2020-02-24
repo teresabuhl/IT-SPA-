@@ -1,29 +1,9 @@
 import $ from "jquery";
 import { Cart } from "../cart/cart";
 import { Router } from "../router/router";
-export const basketpage = () => {
+export const signup = () => {
 	const fragment = $(new DocumentFragment());
 	const cart = new Cart();
-
-	const getValueFromCookies = () => {
-		console.log(cart.get());
-		const result = cart.get();
-		const router = new Router();
-		if (result.length === 0) {
-			// window.location("/rooms");
-			// router.navigate("/");
-			// console.log();
-			// router.init();
-		}
-		return result;
-	};
-
-	const removeDataFromCookies = name => {
-		const result = cart.get().filter((item, key) => {
-			return item.name !== name;
-		});
-		cart.set(result);
-	};
 
 	const summary = () => {
 		console.log(cart.get());
@@ -32,14 +12,36 @@ export const basketpage = () => {
 			.reduce((sum, curr) => (sum += parseFloat(curr.price)), 0)
 			.toFixed(2);
 	};
+	let form = $(`<form >
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">Email address</label>
+	    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+	    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+	  </div>
+	  <div class="form-group">
+	    <label for="exampleInputPassword1">Password</label>
+	    <input type="password" class="form-control" id="password">
+	  </div>
+	</form>
+	  `);
+	let btn = $(`<button class="btn btn-primary">
+			Zarejestruj się
+		</button>`);
 
-	cart.get().map((item, key) => {
-		return fragment.append(
-			`<h2>${item.name} - ${item.price} </h2> <button >Usuń </button>`
-		);
+	btn.on("click", e => {
+		e.preventDefault();
+		console.log();
+		const email = $("#email").val();
+		const password = $("#password").val();
+		fetch("http://localhost:3000/users", {
+			method: "POST",
+			data: { email, password }
+		});
 	});
 
-	fragment.append(summary);
+	$(form).append(btn);
+	fragment.append(form);
+
 	// onclick="
 	//       ()=>{${removeDataFromCookies(
 	// 				item.name
