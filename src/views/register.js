@@ -1,18 +1,11 @@
 import $ from "jquery";
-import { Cart } from "../cart/cart";
 import { Router } from "../router/router";
+import "./forms.scss";
+
 export const signup = () => {
 	const fragment = $(new DocumentFragment());
-	const cart = new Cart();
-
-	const summary = () => {
-		console.log(cart.get());
-		return cart
-			.get()
-			.reduce((sum, curr) => (sum += parseFloat(curr.price)), 0)
-			.toFixed(2);
-	};
-	let form = $(`<form >
+	const router = new Router();
+	let form = $(`<form class='register'>
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">Email address</label>
 	    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
@@ -30,22 +23,27 @@ export const signup = () => {
 
 	btn.on("click", e => {
 		e.preventDefault();
-		console.log();
 		const email = $("#email").val();
 		const password = $("#password").val();
+		const obj = { email, password };
+
+		// fetch("http://localhost:3000/users").then(res => {
+		// 	console.log(res.json());
+		// });
+
 		fetch("http://localhost:3000/users", {
 			method: "POST",
-			data: { email, password }
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(obj)
+		}).then(res => {
+			console.log(res);
+			if (res.status === 201 && res.statusText === "statusText") {
+				router.navigate("/");
+			}
 		});
 	});
 
 	$(form).append(btn);
 	fragment.append(form);
-
-	// onclick="
-	//       ()=>{${removeDataFromCookies(
-	// 				item.name
-	//       )}}
-	//       "
 	return Promise.resolve(fragment);
 };

@@ -6,7 +6,29 @@
       "password": ""
     },
     {
-      "id": 2
+      "email": "teresabuhl@wp.pl",
+      "password": "www",
+      "id": 3
+    },
+    {
+      "email": "wwww",
+      "password": "eee",
+      "id": 4
+    },
+    {
+      "email": "teresabuhl83@gmail.com",
+      "password": "eeee",
+      "id": 5
+    },
+    {
+      "email": "teresabuhl83@gmail.com",
+      "password": "eeee",
+      "id": 6
+    },
+    {
+      "email": "gio@wp.pl",
+      "password": "www",
+      "id": 7
     }
   ],
   "rooms": [

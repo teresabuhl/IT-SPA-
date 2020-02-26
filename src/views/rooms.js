@@ -20,7 +20,7 @@ export const rooms = () => {
 		// console.log(name);
 		const result = cart.get();
 		console.log(result);
-		result.push({ name: offerName, price: offerPrice });
+		result.push({ name: offerName, price: offerPrice, type: "rooms" });
 		cart.set(result);
 	};
 
@@ -31,11 +31,35 @@ export const rooms = () => {
 		<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
   		<h1 class="display-4">Pokoje</h1>
   		<p class="lead">Do Państwa dyspozycji IT SPA oddaje 12 komfortowych pokoi o łącznej liczbie 40 ekskluzywnie wyposażonych miejsc noclegowych. Wszystkie pokoje wyposażone są w nowoczesne udogodnienia, takie jak: klimatyzacja, telewizja satelitarna, telewizory LED (dostępne ym.in. kanały Canal+, Canal+ Sport, Mini Mini), telefon, mini lodówka, suszarkę do włosów, szlafrok oraz sejf. W obiekcie dostępne jest bezpłatne WiFi.</p>
-    </div>`);
-
+		</div>
+		<div class="modal fade" id="reservation" tabindex="-1" role="dialog" aria-labelledby="reservation" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reservation">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+		`);
+		// $("#reservation").modal("toggle");
+		let container = $(`<div class="container-fluid"></div>`);
+		let wrapper = $(`<div class="card-deck mb-3 text-center"></div>`);
+		$(container).append(wrapper);
+		fragment.append(container);
 		pokoje.map((item, key) => {
 			// return
-			let wrapper = $(`<div class="card-deck mb-4 text-center"></div> `);
+
 			let card = $(`<div class="card mb-4 shadow-sm">
 		</div>`);
 			let header = $(`<div class="card-header">
@@ -48,17 +72,16 @@ export const rooms = () => {
 		<li>1 guest</li>
 	</ul> </div>`);
 			let btn = $(
-				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}">Rezerwuj online<i class='fas fa - shopping - cart' ></i></button>`
+				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj online<i class='fas fa-shopping-cart'></i></button>`
 			);
 			$(btn).on("click", e => {
-				setCookies(e);
+				// setCookies(e);
 			});
 
-			$(bodyCard).append(btn);
 			$(wrapper).append(card);
 			$(card).append(header);
 			$(card).append(bodyCard);
-			fragment.append(wrapper);
+			$(bodyCard).append(btn);
 		});
 		// ${Cart.set(
 		// item.name

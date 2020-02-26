@@ -41,6 +41,7 @@ export const booking = () => {
     	<tr>
       	<th scope="col">#</th>
       	<th scope="col">Name</th>
+      	<th scope="col">Typ</th>
       	<th scope="col">Price</th>
 				<th scope="col">Delate</th>
     	</tr>
@@ -58,6 +59,7 @@ export const booking = () => {
 			let tr = $(`
     <tr>
       <th scope="row">${key + 1}</th>
+      <th scope="row">${item.type === "rooms" ? "Pokój" : "Zabieg"}</th>
       <td>${item.name}</td>
       <td>${item.price}</td>
 		</tr>`);
@@ -69,7 +71,6 @@ export const booking = () => {
 		});
 
 		fragment.append(table);
-
 		fragment.append(summary);
 	};
 	renderBookingList();

@@ -5,7 +5,7 @@ import { routes } from "../router/routes";
 
 export const nav = () => {
 	const navbar = $(`
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<span class="navbar-brand">
 				<a class="navbar-brand" href="#">
     			<i class="fas fa-spa"></i> IT SPA
