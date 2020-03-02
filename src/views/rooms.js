@@ -1,6 +1,7 @@
 import $ from "jquery";
 import { roomsService } from "../common/rooms-service";
 import { Cart } from "../cart/cart";
+import "./rooms.scss";
 import { roomsList } from "./rooms-list";
 
 export const rooms = () => {
@@ -11,7 +12,7 @@ export const rooms = () => {
 	// .append('<p>Lorem ipsum dolor sit amet...</p>')
 	const cart = new Cart();
 
-	const setCookies = e => {
+	const setCookies = (e, dateFrom, dateTo) => {
 		const { name } = e.target;
 		console.log(name);
 		const offerName = name.split(";")[0];
@@ -20,68 +21,145 @@ export const rooms = () => {
 		// console.log(name);
 		const result = cart.get();
 		console.log(result);
-		result.push({ name: offerName, price: offerPrice, type: "rooms" });
+		result.push({
+			name: offerName,
+			price: offerPrice,
+			type: "rooms",
+			dateTime: { dateFrom, dateTo }
+		});
 		cart.set(result);
 	};
 
 	// $(".add-to-cart").on("click", ());
 
 	return roomsService.getRooms().then(pokoje => {
-		fragment.append(`
-		<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  		<h1 class="display-4">Pokoje</h1>
-  		<p class="lead">Do Państwa dyspozycji IT SPA oddaje 12 komfortowych pokoi o łącznej liczbie 40 ekskluzywnie wyposażonych miejsc noclegowych. Wszystkie pokoje wyposażone są w nowoczesne udogodnienia, takie jak: klimatyzacja, telewizja satelitarna, telewizory LED (dostępne ym.in. kanały Canal+, Canal+ Sport, Mini Mini), telefon, mini lodówka, suszarkę do włosów, szlafrok oraz sejf. W obiekcie dostępne jest bezpłatne WiFi.</p>
-		</div>
-		<div class="modal fade" id="reservation" tabindex="-1" role="dialog" aria-labelledby="reservation" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="reservation">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-		`);
-		// $("#reservation").modal("toggle");
-		let container = $(`<div class="container-fluid"></div>`);
-		let wrapper = $(`<div class="card-deck mb-3 text-center"></div>`);
-		$(container).append(wrapper);
-		fragment.append(container);
+		let jumbotron = $(
+			`<div class="jumbotron jumbotron-fluid jumbotron-rooms">`
+		);
+		let junboContainer = $(`<div class="container">`);
+		let dateReservation = $(`<div class="date-reservation">`);
+		let formItemFrom = $(
+			`<div class="form-item"><label for="date">Przyjazd</label></div>`
+		);
+		let formItemTo = $(
+			`<div class="form-item"><label for="date">Wyjazd</label></div>`
+		);
+		let dateInputFrom = $(`<input
+						type="date"
+						class="form-control"
+						id="date"
+						placeholder="select"
+					/>`);
+		let dateInputTo = $(`<input
+						type="date"
+						class="form-control"
+						id="date"
+						placeholder="select"
+					/>`);
+		let btnReservation = $(
+			`<button type="button" class="btn btn-dark btn-reservation">Zaplanuj pobyt</button>`
+		);
+
+		$(btnReservation).on("click", () => {
+			const date = new Date().getTime();
+			const dateFrom = new Date($(dateInputFrom).val()).getTime();
+			const dateTo = new Date($(dateInputTo).val()).getTime();
+			console.log(
+				date,
+				dateFrom,
+				dateTo,
+				date < dateFrom,
+				date < dateTo,
+				dateTo < dateFrom
+			);
+			if (
+				$(dateInputFrom).val() === "" ||
+				$(dateInputTo).val() === "" ||
+				date > dateFrom ||
+				date > dateTo ||
+				dateTo < dateFrom
+			) {
+				alert("Error");
+				// $(dateInputFrom).toggleClass;
+			} else {
+				$(window).scrollTop(700);
+			}
+		});
+
+		$(jumbotron).append(junboContainer);
+		$(junboContainer).append(dateReservation);
+		$(dateReservation).append(formItemFrom);
+		$(dateReservation).append(formItemTo);
+		$(formItemFrom).append(dateInputFrom);
+		$(formItemTo).append(dateInputTo);
+		$(dateReservation).append(btnReservation);
+		fragment.append(jumbotron);
+		// fragment.append(`
+		// <div class="jumbotron jumbotron-fluid jumbotron-rooms">
+		// 	<div class="container">
+
+		// 	<div class="date-reservation">
+		// 		<div class="form-item">
+		// 			<label for="date">Przyjazd</label>
+		// 			<input
+		// 				type="date"
+		// 				class="form-control"
+		// 				id="date"
+		// 				placeholder="select"
+		// 			/>
+		// 		</div>
+		// 		<div class="form-item">
+		// 			<label for="date">Wyjazd</label>
+		// 			<input
+		// 				type="date"
+		// 				class="form-control"
+		// 				id="date"
+		// 				placeholder="select"
+		// 			/>
+		// 		</div>
+		// 			<button type="button" class="btn btn-dark btn-reservation">Zaplanuj pobyt</button>
+		// 	</div>
+
+		// 	</div>
+		// </div>
+		// `);
+
+		let container = $(`<div class='container'> </div>`);
+		let containerRow = $(
+			`<div class="row mx-0 row-cols-1 row-cols-md-3"></div>`
+		);
+
+		$(container).append(containerRow);
+
 		pokoje.map((item, key) => {
 			// return
+			let cardDeck = $(`<div class="col-md-4"></div>`);
+			const card = $(`<div class="card mb-4 shadow-sm"></div>`);
 
-			let card = $(`<div class="card mb-4 shadow-sm">
-		</div>`);
-			let header = $(`<div class="card-header">
-			<h4 class="my-0 font-weight-normal">${item.name}</h4>
-		</div>`);
-			let bodyCard = $(` <div class="card-body">
-		<h1 class="card-title pricing-card-title">${item.price} zł<small class="text-muted">/ noc</small></h1>
-	<ul class="list-unstyled mt-3 mb-4">
-		<li>1 bed</li>
-		<li>1 guest</li>
-	</ul> </div>`);
+			const cardImg = $(`<img class="card-img-top" src=${item.image} alt="">`);
+
+			const cardBody = $(`<div class="card-body">
+				<h4 class="card-title">${item.name}</h4>
+				<p class="card-text">${item.price} zł<small class="text-muted">/ noc</small></p>
+				</div>`);
+
 			let btn = $(
-				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj online<i class='fas fa-shopping-cart'></i></button>`
+				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj</button>`
 			);
 			$(btn).on("click", e => {
-				// setCookies(e);
+				if ($(dateInputFrom).val() === "" || $(dateInputTo).val() === "") {
+					$(window).scrollTop(0);
+				} else {
+					setCookies(e, $(dateInputFrom).val(), $(dateInputTo).val());
+				}
 			});
 
-			$(wrapper).append(card);
-			$(card).append(header);
-			$(card).append(bodyCard);
-			$(bodyCard).append(btn);
+			$(containerRow).append(cardDeck);
+			$(cardDeck).append(card);
+			$(card).append(cardImg);
+			$(card).append(cardBody);
+			$(cardBody).append(btn);
+			fragment.append(container);
 		});
 		// ${Cart.set(
 		// item.name
@@ -89,3 +167,7 @@ export const rooms = () => {
 		return fragment;
 	});
 };
+
+{
+	/* <i class="fas fa-shopping-cart"></i>; */
+}

@@ -1,6 +1,5 @@
 {
-  "users": [
-    {
+  "users": [{
       "id": 1,
       "email": "",
       "password": ""
@@ -29,12 +28,24 @@
       "email": "gio@wp.pl",
       "password": "www",
       "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
     }
   ],
-  "rooms": [
-    {
+  "rooms": [{
       "id": 1,
       "name": "Pokój jednoosobowy",
+      "image": "https://cdn.pixabay.com/photo/2018/06/14/21/17/room-3475665_1280.jpg",
       "beds": 1,
       "guests": 1,
       "price": 170
@@ -42,6 +53,7 @@
     {
       "id": 2,
       "name": "Pokój dwuosobowy",
+      "image": "https://cdn.pixabay.com/photo/2018/03/01/03/52/furniture-3189674_1280.jpg",
       "beds": 1,
       "guests": 2,
       "price": 240
@@ -49,6 +61,7 @@
     {
       "id": 3,
       "name": "Pokój trzyosobowy",
+      "image": "https://cdn.pixabay.com/photo/2016/11/14/02/28/apartment-1822409_1280.jpg",
       "beds": 2,
       "guests": 3,
       "price": 290
@@ -56,13 +69,13 @@
     {
       "id": 4,
       "name": "Pokój czteroosobowy",
+      "image": "https://cdn.pixabay.com/photo/2016/08/26/15/06/home-1622401_1280.jpg",
       "beds": 2,
       "guests": 4,
       "price": 340
     }
   ],
-  "treatments": [
-    {
+  "treatments": [{
       "id": 1,
       "name": "Masaż rozgrzanym monitorem",
       "area": "back",

@@ -1,4 +1,5 @@
 import $ from "jquery";
+import "./home.scss";
 
 export const home = () => {
 	const fragment = $(new DocumentFragment());
@@ -93,6 +94,7 @@ export const home = () => {
 
 	$(container).append(carousel);
 	$(container).append(featurette);
+
 	fragment.append(container);
 
 	return Promise.resolve(fragment);

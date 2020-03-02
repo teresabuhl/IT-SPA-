@@ -1,6 +1,8 @@
 import $ from "jquery";
 import { Cart } from "../cart/cart";
 import { treatmentsService } from "../common/treatments-service";
+import "./treatments.scss";
+
 export const treatments = () => {
 	const fragment = $(new DocumentFragment());
 
@@ -20,40 +22,41 @@ export const treatments = () => {
 	};
 
 	return treatmentsService.getTreatments().then(treat => {
-		// fragment.append(`
-		// <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-		// 	<h1 class="display-4">${treat.name}</h1>
-		// 	<p class="lead">Do Państwa dyspozycji IT SPA oddaje 12 komfortowych pokoi o łącznej liczbie 40 ekskluzywnie wyposażonych miejsc noclegowych. Wszystkie pokoje wyposażone są w nowoczesne udogodnienia, takie jak: klimatyzacja, telewizja satelitarna, telewizory LED (dostępne ym.in. kanały Canal+, Canal+ Sport, Mini Mini), telefon, mini lodówka, suszarkę do włosów, szlafrok oraz sejf. W obiekcie dostępne jest bezpłatne WiFi.</p>
-		// </div>`);
-		let container = $(`<div class="container-fluid"></div>`);
-		let wrapper = $(`<div class="card-deck mb-3 text-center"></div>`);
-		$(container).append(wrapper);
-		fragment.append(container);
-		treat.map((item, key) => {
-			// return
+		fragment.append(`
+		<div class="jumbotron jumbotron-fluid jumbotron-treatments">
+			<div class="container text-white">
+				<h1 class="display-4">Wyjątkowe SPA</h1>
+				<p class="lead">IT SPA oprócz wspaniałych relaksujących zabiegów manualnych na twarz i ciało proponuje również zabiegi wykonywane specjalistycznym sprzętem na bardzo wysokiej jakości produktach.</p>
+			</div>
+		</div>`);
 
-			let card = $(`<div class="card col-sm-3 mb-4 shadow-sm">
-		</div>`);
-			let header = $(`<div class="card-header">
-			<h4 class="my-0 font-weight-normal">${item.name}</h4>
-		</div>`);
-			let bodyCard = $(` <div class="card-body">
-		<h1 class="card-title pricing-card-title">${item.price} zł<small class="text-muted">/ noc</small></h1>
-	<ul class="list-unstyled mt-3 mb-4">
-		<li>1 bed</li>
-		<li>1 guest</li>
-	</ul> </div>`);
+		let container = $(`<div class="container d-flex"></div>`);
+		let card = $(`<div class="card" style="width: 18rem"></div>`);
+
+		$(container).append(card);
+		fragment.append(container);
+
+		treat.map((item, key) => {
+			let cardImg = $(
+				`<img src="../imges/spa-3184610_1920.jpg" class="card-img-top" alt="...">`
+			);
+
+			let bodyCard = $(`<div class="card-body">
+    <h5 class="card-title">${item.name}</h5>
+		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		<h1 class="card-title pricing-card-title">${item.price} zł</h1>
+  </div> 		
+`);
 			let btn = $(
-				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}">Dodaj do koszyka<i class='fas fa-shopping-cart'></i></button>`
+				`<button type="button" class="btn btn-lg btn-block btn-outline-primary add-to-cart" name="${item.name};${item.price}">Dodaj do koszyka<i class='fas fa-shopping-cart'></i></button>`
 			);
 			$(btn).on("click", e => {
 				setCookies(e);
 			});
 
-			$(wrapper).append(card);
-			$(card).append(header);
-			$(card).append(bodyCard);
+			$(card).append(cardImg);
 			$(bodyCard).append(btn);
+			$(card).append(bodyCard);
 		});
 		return fragment;
 	});

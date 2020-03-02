@@ -1,0 +1,30 @@
+.jumbotron-rooms {
+  background-image: url(../imges/cozy-modern-bedroom-3144580.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.date-reservation {
+  display: flex;
+}
+
+.form-item {
+  background-color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  color: grey;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.btn-reservation {
+  width: 200px;
+  border-radius: 0;
+}

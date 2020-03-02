@@ -1,25 +1,25 @@
-import { home, rooms, treatments, booking, signup, signin } from "../views";
+import { home, rooms, treatments, booking, login, register } from "../views";
 
 export const routes = [
-	{ name: "Home", path: "/", date: {}, component: home },
-	{ name: "Rooms", path: "/rooms", date: {}, component: rooms },
+	{ name: "", path: "/", date: {}, component: home },
+	{ name: "Hotel", path: "/rooms", date: {}, component: rooms },
 	{
-		name: "Treatments",
+		name: "SPA & WELLNESS",
 		path: "/treatments",
 		date: {},
 		component: treatments
 	},
-	{ name: "Booking", path: "/booking", date: {}, component: booking },
+	{ name: "Koszyk", path: "/booking", date: {}, component: booking },
 	{
-		name: "SignUp",
-		path: "/signup",
+		name: "Zaloguj się",
+		path: "/login",
 		date: {},
-		component: signup
+		component: login
 	},
 	{
-		name: "Sign In",
-		path: "/signin",
+		name: "Zarejestruj się",
+		path: "/register",
 		date: {},
-		component: signin
+		component: register
 	}
 ];

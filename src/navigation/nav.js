@@ -5,16 +5,22 @@ import { routes } from "../router/routes";
 
 export const nav = () => {
 	const navbar = $(`
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+		<div class="container">
 			<span class="navbar-brand">
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="/">
     			<i class="fas fa-spa"></i> IT SPA
   			</a>
 			</span>
-			<ul class="navbar-nav mr-auto"></ul>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end">
+			<ul class="navbar-nav navbar-right"></ul>
+			<div>
+		</div>
     </nav>
-  `);
-	// <a class="btn btn-link text-light">Log in <i class="fas fa-sign-in-alt"></i><a class="btn btn-link text-light"></a>
+	`);
 
 	// nav item spodziewa sie funkcji, ktora bedzie wywolywana przy kliknieciu
 	// const bookingNavItem = navItem("Booking", () =>
