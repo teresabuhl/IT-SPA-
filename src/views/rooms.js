@@ -1,8 +1,9 @@
 import $ from "jquery";
 import { roomsService } from "../common/rooms-service";
+import moment from "moment";
 import { Cart } from "../cart/cart";
 import "./rooms.scss";
-import { roomsList } from "./rooms-list";
+// import { roomsList } from "./rooms-list";
 
 export const rooms = () => {
 	const fragment = $(new DocumentFragment());
@@ -33,30 +34,30 @@ export const rooms = () => {
 	// $(".add-to-cart").on("click", ());
 
 	return roomsService.getRooms().then(pokoje => {
-		let jumbotron = $(
+		const jumbotron = $(
 			`<div class="jumbotron jumbotron-fluid jumbotron-rooms">`
 		);
-		let junboContainer = $(`<div class="container">`);
-		let dateReservation = $(`<div class="date-reservation">`);
-		let formItemFrom = $(
+		const junboContainer = $(`<div class="container">`);
+		const dateReservation = $(`<div class="date-reservation">`);
+		const formItemFrom = $(
 			`<div class="form-item"><label for="date">Przyjazd</label></div>`
 		);
-		let formItemTo = $(
+		const formItemTo = $(
 			`<div class="form-item"><label for="date">Wyjazd</label></div>`
 		);
-		let dateInputFrom = $(`<input
+		const dateInputFrom = $(`<input
 						type="date"
 						class="form-control"
 						id="date"
 						placeholder="select"
 					/>`);
-		let dateInputTo = $(`<input
+		const dateInputTo = $(`<input
 						type="date"
 						class="form-control"
 						id="date"
 						placeholder="select"
 					/>`);
-		let btnReservation = $(
+		const btnReservation = $(
 			`<button type="button" class="btn btn-dark btn-reservation">Zaplanuj pobyt</button>`
 		);
 
@@ -72,6 +73,12 @@ export const rooms = () => {
 				date < dateTo,
 				dateTo < dateFrom
 			);
+
+			const dateFirst = new moment(date);
+			const dateSec = new moment(dateTo);
+			const duration = moment.duration(dateSec.diff(dateFirst));
+			console.log(duration.asYears());
+
 			if (
 				$(dateInputFrom).val() === "" ||
 				$(dateInputTo).val() === "" ||
@@ -81,6 +88,10 @@ export const rooms = () => {
 			) {
 				alert("Error");
 				// $(dateInputFrom).toggleClass;
+			} else if (duration.asYears() > 1) {
+				alert(
+					"Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu"
+				);
 			} else {
 				$(window).scrollTop(700);
 			}
@@ -94,37 +105,8 @@ export const rooms = () => {
 		$(formItemTo).append(dateInputTo);
 		$(dateReservation).append(btnReservation);
 		fragment.append(jumbotron);
-		// fragment.append(`
-		// <div class="jumbotron jumbotron-fluid jumbotron-rooms">
-		// 	<div class="container">
 
-		// 	<div class="date-reservation">
-		// 		<div class="form-item">
-		// 			<label for="date">Przyjazd</label>
-		// 			<input
-		// 				type="date"
-		// 				class="form-control"
-		// 				id="date"
-		// 				placeholder="select"
-		// 			/>
-		// 		</div>
-		// 		<div class="form-item">
-		// 			<label for="date">Wyjazd</label>
-		// 			<input
-		// 				type="date"
-		// 				class="form-control"
-		// 				id="date"
-		// 				placeholder="select"
-		// 			/>
-		// 		</div>
-		// 			<button type="button" class="btn btn-dark btn-reservation">Zaplanuj pobyt</button>
-		// 	</div>
-
-		// 	</div>
-		// </div>
-		// `);
-
-		let container = $(`<div class='container'> </div>`);
+		let container = $(`<div class='container'></div>`);
 		let containerRow = $(
 			`<div class="row mx-0 row-cols-1 row-cols-md-3"></div>`
 		);
@@ -140,7 +122,7 @@ export const rooms = () => {
 
 			const cardBody = $(`<div class="card-body">
 				<h4 class="card-title">${item.name}</h4>
-				<p class="card-text">${item.price} zł<small class="text-muted">/ noc</small></p>
+				<h2 class="card-text">${item.price} zł<small class="text-muted">/ noc</small></h2>
 				</div>`);
 
 			let btn = $(

@@ -15,11 +15,13 @@ export const nav = () => {
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse justify-content-end">
+			<div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
 			<ul class="navbar-nav navbar-right"></ul>
 			<div>
 		</div>
-    </nav>
+		</nav>
+
+		
 	`);
 
 	// nav item spodziewa sie funkcji, ktora bedzie wywolywana przy kliknieciu

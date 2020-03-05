@@ -47,26 +47,33 @@ export const booking = () => {
 		// 	.toFixed(2);
 		let sum = 0;
 		cart.get().map((item, key) => {
-			return (sum += item.price * dateDiff(item.dateTime));
+			if (item.type === "rooms") {
+				return (sum += parseFloat(item.price) * dateDiff(item.dateTime));
+			} else {
+				return (sum += parseFloat(item.price));
+			}
 		});
 		return sum;
 	};
 	const renderBookingList = () => {
-		let table = $(`<table class="table ">`);
+		let container = $(`<div class="container"></div>`);
+		let table = $(`<table class="table">`);
 		let thead = $(`<thead>
     	<tr>
       	<th scope="col">#</th>
+				<th scope="col">Typ</th>
       	<th scope="col">Nazwa</th>
-      	<th scope="col">Typ</th>
       	<th scope="col">Data przyjazdu</th>
       	<th scope="col">Data wyjazdu</th>
       	<th scope="col">Cena/Noc</th>
-      	<th scope="col">Cena</th>
+      	<th scope="col-sm-4">Cena</th>
       	<th scope="col">Ilość dni</th>
 				<th scope="col">Usuń</th>
     	</tr>
   	</thead>`);
 		let tbody = $("<tbody>");
+
+		$(container).append(table);
 		$(table).append(thead);
 		$(table).append(tbody);
 
@@ -77,18 +84,20 @@ export const booking = () => {
 				removeDataFromCookies(e);
 			});
 			let tr = $(`
-    <tr>
-      <th scope="row">${key + 1}</th>
-      <th scope="row">${item.type === "rooms" ? "Pokój" : "Zabieg"}</th>
-			<td>${item.name}</td>
-			<td>${item.dateTime.dateFrom}</td>
-      <td>${item.dateTime.dateTo}</td>
-      <td>${item.price}</td>
-			<td>${item.price * dateDiff(item.dateTime)}</td>
-			<td>${dateDiff(item.dateTime)}</td>
-			
-
-		</tr>`);
+			<tr>
+				<th scope="row">${key + 1}</th>
+				<th scope="row">${item.type === "rooms" ? "Pokój" : "Zabieg"}</th>
+				<td>${item.name}</td>
+				<td>${item.type === "rooms" ? item.dateTime.dateFrom : "-"}</td>
+				<td>${item.type === "rooms" ? item.dateTime.dateTo : "-"}</td>
+				<td>${item.price} ZŁ</td>
+				<td>${
+					item.type === "rooms"
+						? item.price * dateDiff(item.dateTime)
+						: item.price
+				} ZŁ</td>
+				<td>${item.type === "rooms" ? dateDiff(item.dateTime) : "-"}</td>
+			</tr>`);
 			let td = $(`<td>`);
 			$(td).append(btn);
 			$(tr).append(td);
@@ -96,7 +105,7 @@ export const booking = () => {
 			return $(tbody).append(tr);
 		});
 
-		fragment.append(table);
+		fragment.append(container);
 		fragment.append(summary);
 	};
 	renderBookingList();

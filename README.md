@@ -2,21 +2,21 @@
 
 Projekt polega na napisaniu aplikacji Single Page Application dla ośrodka SPA dedykowanego programistom.
 
-Aplikacja powinna umożliwiać: 
+Aplikacja powinna umożliwiać:
 
 - Przeglądanie dostępnych zabiegów
 - Dodawanie wybranych zabiegów do koszyka
-- Wybór daty przyjazdu i wyjazdu oraz pokoju  
+- Wybór daty przyjazdu i wyjazdu oraz pokoju
 - Rejestrację użytkownika (opcjonalnie)
 - Logowanie użytkownika (opcjonalnie)
 - Podsumowanie składanego zamówienia
 
 ## Booking
 
-Stwórz komponent koszyka, który wyświetla podsumowanie zamówienia.
+<!-- Stwórz komponent koszyka, który wyświetla podsumowanie zamówienia.
 Koszyk powinien też umożliwiać nanoszenie poprawek do zamówienia.
 Użytkownik nie może wybrać daty przyjazdu wcześniejszej niż bieżąca.
-Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu.
+Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu. -->
 
 ## Rejestracja
 
@@ -32,12 +32,12 @@ Logowanie polega na porównaniu podanych przez użytkownika danych (e-mail i has
 ## Pokoje
 
 Bazę przykładowych pokoi w ośrodku IT SPA znajdziesz w pliku `database.json`.
-Możesz dowolnie zmienić istniejące pokoje lub dodać swoje własne. 
+Możesz dowolnie zmienić istniejące pokoje lub dodać swoje własne.
 
-## Zabiegi 
+## Zabiegi
 
 Bazę przykładowych zabiegów ośrodka IT SPA znajdziesz w pliku `database.json`.
-Możesz dowolnie zmienić istniejące zabiegi lub dodać swoje własne. 
+Możesz dowolnie zmienić istniejące zabiegi lub dodać swoje własne.
 
 ## Koszyk
 
@@ -63,7 +63,7 @@ Postaraj się oddać projekt do końca maja 2020.
 
 ## Przykłady
 
-Strony, którymi możesz się inspirować: 
+Strony, którymi możesz się inspirować:
 
 - afrodyta-spa.pl
 - bukowypark.pl

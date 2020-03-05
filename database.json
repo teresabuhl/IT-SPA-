@@ -1,5 +1,6 @@
 {
-  "users": [{
+  "users": [
+    {
       "id": 1,
       "email": "",
       "password": ""
@@ -30,19 +31,28 @@
       "id": 7
     },
     {
+      "email": "test@gmail.com",
+      "password": "wwwwww",
       "id": 8
     },
     {
+      "email": "test@gmail.com",
+      "password": "wwwwwwweew",
       "id": 9
     },
     {
+      "email": "test@gmail.com",
+      "password": "wwwwwwweew",
       "id": 10
     },
     {
+      "email": "test@gmail.com",
+      "password": "wwwwwwweew",
       "id": 11
     }
   ],
-  "rooms": [{
+  "rooms": [
+    {
       "id": 1,
       "name": "Pokój jednoosobowy",
       "image": "https://cdn.pixabay.com/photo/2018/06/14/21/17/room-3475665_1280.jpg",
@@ -75,51 +85,66 @@
       "price": 340
     }
   ],
-  "treatments": [{
+  "treatments": [
+    {
       "id": 1,
-      "name": "Masaż rozgrzanym monitorem",
-      "area": "back",
-      "time": 30,
-      "price": 80
+      "name": "Czekoladowa Rozkosz - zabieg wyszczuplająco - regenerujący",
+      "text": "Zabieg wykorzystuje doskonałe właściwości aromaterapeutyczne, wyszczuplające i odżywcze czekolady. Intensywnie wygładza i ujędrnia skórę, redukuje objawy cellulitu i rewitalizuje zmęczoną skórę.",
+      "image": "https://image.freepik.com/darmowe-zdjecie/lekarz-masuje-kobiete-czekolada_1157-29314.jpg",
+      "area": "body",
+      "time": 50,
+      "price": 240
     },
     {
       "id": 2,
-      "name": "Biczowanie kablem od myszy",
-      "area": "back",
+      "name": "Peelingi Ciała",
+      "text": "Doskonale oczyszczają i wygładzają skórę przy jednoczesnym usuwaniu martwych komórek naskórka. Optymalnie nawilżają i delikatnie natłuszczając, pozostawiając skórę aksamitną w dotyku.",
+      "image": "https://image.freepik.com/darmowe-zdjecie/zakonczenie-mloda-kobieta-ma-exfoliation-traktowanie-w-zdroju_23-2147939889.jpg",
+      "area": "body",
       "time": 20,
-      "price": 70
+      "price": 110
     },
     {
       "id": 3,
-      "name": "Peeling odłamkami płyty CD",
-      "area": "face",
-      "time": 15,
-      "price": 50
+      "name": "Zabieg modelująco-nawilżający bioline - tonizujący",
+      "text": "Intensywnie nawilża i zwalcza oznaki przedwczesnego starzenia się. Odżywia obszary ciała, które są najbardziej narażone na utratę jędrności: wnętrze ud, ramiona, piersi i pośladki.",
+      "image": "https://image.freepik.com/darmowe-zdjecie/piekna-mloda-kobieta-przy-zdroju-salonem_155003-893.jpg",
+      "area": "body",
+      "time": 50,
+      "price": 230
     },
     {
       "id": 4,
-      "name": "Pedicure woskiem z USB",
-      "area": "legs",
+      "name": "Masaż hinduski głowy",
+      "text": "Masaż polecany jest osobom pracującym przy komputerze i prowadzącym siedzący tryb życia.Zalecany zwłaszcza przy bólach głowy oraz migrenach.",
+      "image": "https://image.freepik.com/darmowe-zdjecie/mezczyzna-cieszy-sie-masaz-twarzy_144627-18645.jpg",
+      "area": "head",
       "time": 25,
-      "price": 100
+      "price": 90
     },
     {
       "id": 5,
-      "name": "Manicure analogowo-cyfrowy",
-      "area": "hands",
-      "time": 45,
-      "price": 150
+      "name": "Tajski masaż stóp",
+      "text": "Połączenie masażu z akupresurą stref refleksologicznych stóp.Technika masażu obejmuje m.in.masaż podeszwy, grzbietu stopy, palców, kostek, łydek, okolic kolana.",
+      "image": "https://image.freepik.com/darmowe-zdjecie/kobieta-odbiera-uslugi-masazu-stop-z-masazystka-bliska-pod-reka-i-stop-zrelaksowac-sie-w-koncepcji-uslugi-terapii-masazu-stop_1150-13723.jpg",
+      "area": "feet",
+      "time": 50,
+      "price": 130
     },
     {
       "id": 6,
-      "name": "Kąpiel w gorącej kawie",
+      "name": "Zabieg drenujący bioline - cellulit i zatrzymywanie wody",
+      "text": "Kompleks substancji aktywnych, które minimalizują skórkę pomarańczową i zapewniają uczucie natychmiastowej lekkości. Wielofunkcyjna struktura użytych kosmetyków sprzyja sprężystości tkanki i pomaga utrzymać gładką skórę.",
+      "image": "https://image.freepik.com/darmowe-zdjecie/kobieta-odbiera-masaz-brzucha-w-centrum-odnowy-biologicznej-spa_1139-1712.jpg",
       "area": "body",
-      "time": 60,
-      "price": 200
+      "time": 50,
+      "price": 290
     },
     {
       "id": 7,
       "name": "Depilacja dyskiem twardym",
+      "text": "",
+      "image": "",
       "area": "body",
       "time": 45,
       "price": 120

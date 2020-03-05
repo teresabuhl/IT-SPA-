@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { Router } from "../router/router";
+import validate from "jquery-validation";
 import "./forms.scss";
 
 export const register = () => {
@@ -15,7 +16,7 @@ export const register = () => {
     <div class="form-row mb-4">
         <div class="col">
             <!-- First name -->
-            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+            <input type="text" id="firstName" name="firstName"  class="form-control" placeholder="First name">
         </div>
         <div class="col">
             <!-- Last name -->
@@ -24,10 +25,10 @@ export const register = () => {
     </div>
 
     <!-- E-mail -->
-    <input type="email" id="defaultRegisterFormEmail email" class="form-control mb-4" placeholder="E-mail">
+    <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail">
 
     <!-- Password -->
-    <input type="password" id="defaultRegisterFormPassword password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <input type="password" id="password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
     </small>
@@ -52,7 +53,7 @@ export const register = () => {
 `);
 
 	const btn = $(`
-		<button class="btn btn-info my-4 btn-block" type="submit">Zarejestruj się</button>`);
+		<button type="submit" class="btn btn-info my-4 btn-block" type="submit">Zarejestruj się</button>`);
 
 	const socialRegister = $(`
 		<p>or sign up with:</p>
@@ -68,6 +69,21 @@ export const register = () => {
 	const termsOfService = $(`<p>By clicking
         <em>Sign up</em> you agree to our
         <a href="" target="_blank">terms of service</a></p>`);
+
+	$(form).validate({
+		rules: {
+			firstName: {
+				required: true,
+				minLength: 3
+			}
+		},
+		messages: {
+			firstName: "Proszę podać imię"
+		},
+		submitHandler: function(form) {
+			form.submit();
+		}
+	});
 
 	btn.on("click", e => {
 		e.preventDefault();

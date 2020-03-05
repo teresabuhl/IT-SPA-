@@ -1,8 +1,12 @@
 import $ from "jquery";
+import { usersService } from "../common/users-service";
 import "./forms.scss";
 
 export const login = () => {
 	const fragment = $(new DocumentFragment());
+
+	// const getAllUsers = usersService.getUsers();
+	// console.log(getAllUsers);
 
 	const container = $(
 		`<form class="text-center border border-light p-5 form login" action="#!"></form>`
@@ -77,8 +81,13 @@ export const login = () => {
 		const password = $("#password").val();
 		const obj = { email, password };
 
-		// fetch("http://localhost:3000/users").then(res => {
+		// fetch("http://localhost:3000/users", {
+		// 	method: "GET",
+		// 	headers: { "Content-Type": "application/json" }
+		// 	// body: JSON.stringify(obj)
+		// }).then(res => {
 		// 	console.log(res.json());
+		// 	// if (res.status === 201 && res.statusText === "statusText") {
 		// });
 	});
 
