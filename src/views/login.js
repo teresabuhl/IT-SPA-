@@ -1,5 +1,7 @@
 import $ from "jquery";
 import { usersService } from "../common/users-service";
+import { routeChange } from "../router/route-change";
+import { main_router } from "../it-spa";
 import "./forms.scss";
 
 export const login = () => {
@@ -16,10 +18,10 @@ export const login = () => {
 	  <p class="h4 mb-4">Sign in</p>
 
     <!-- Email -->
-    <input type="email" id="defaultLoginFormEmail email" class="form-control mb-4" placeholder="E-mail">
+    <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
 
     <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword password" class="form-control mb-4" placeholder="Password">
+    <input type="password" id="password" class="form-control mb-4" placeholder="Password">
 
     <div class="d-flex justify-content-around">
         <div>
@@ -80,15 +82,30 @@ export const login = () => {
 		const email = $("#email").val();
 		const password = $("#password").val();
 		const obj = { email, password };
+		console.log(email, password);
 
-		// fetch("http://localhost:3000/users", {
-		// 	method: "GET",
-		// 	headers: { "Content-Type": "application/json" }
-		// 	// body: JSON.stringify(obj)
-		// }).then(res => {
-		// 	console.log(res.json());
-		// 	// if (res.status === 201 && res.statusText === "statusText") {
-		// });
+		let usersData = [];
+		fetch("http://localhost:3000/users")
+			.then(res => res.json())
+			.then(resJSON => {
+				console.log(resJSON);
+				usersData = resJSON;
+				let found = usersData.some(item => {
+					return item.email === email && item.password === password;
+				});
+				console.log(found);
+				const date = new Date();
+				const time = date.getTime();
+				const expireTime = time + 1000 * 3600;
+				date.setTime(expireTime);
+				if (found) {
+					document.cookie = `user_token=${email};expires=${date}`;
+					// navbar.trigger(routeChange, { path: path });
+					main_router.navigate("/");
+				} else {
+					/// alert
+				}
+			});
 	});
 
 	$(container).append(form);

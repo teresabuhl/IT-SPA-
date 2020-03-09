@@ -53,12 +53,16 @@ export const booking = () => {
 				return (sum += parseFloat(item.price));
 			}
 		});
-		return sum;
+		return $(
+			`<tr class="table-success"><th colspan="8">RAZEM</th><th>${sum} zł</th></tr>`
+		);
 	};
 	const renderBookingList = () => {
-		let container = $(`<div class="container"></div>`);
-		let table = $(`<table class="table">`);
-		let thead = $(`<thead>
+		let container = $(`<div class="container bookingContainer"></div>`);
+		let table = $(
+			`<table class="table table-responsive-md table-striped bg-light">`
+		);
+		let thead = $(`<thead class="thead-dark">
     	<tr>
       	<th scope="col">#</th>
 				<th scope="col">Typ</th>
@@ -90,12 +94,12 @@ export const booking = () => {
 				<td>${item.name}</td>
 				<td>${item.type === "rooms" ? item.dateTime.dateFrom : "-"}</td>
 				<td>${item.type === "rooms" ? item.dateTime.dateTo : "-"}</td>
-				<td>${item.price} ZŁ</td>
+				<td>${item.type === "rooms" ? `${item.price} zł` : "-"}</td>
 				<td>${
 					item.type === "rooms"
 						? item.price * dateDiff(item.dateTime)
 						: item.price
-				} ZŁ</td>
+				} zł</td>
 				<td>${item.type === "rooms" ? dateDiff(item.dateTime) : "-"}</td>
 			</tr>`);
 			let td = $(`<td>`);
@@ -105,8 +109,8 @@ export const booking = () => {
 			return $(tbody).append(tr);
 		});
 
+		tbody.append(summary);
 		fragment.append(container);
-		fragment.append(summary);
 	};
 	renderBookingList();
 	return Promise.resolve(fragment);

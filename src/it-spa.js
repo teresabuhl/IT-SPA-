@@ -14,3 +14,5 @@ router.mount(main);
 router.init();
 
 main.before(nav());
+
+export const main_router = router;

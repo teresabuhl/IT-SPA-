@@ -93,7 +93,7 @@ export const rooms = () => {
 					"Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu"
 				);
 			} else {
-				$(window).scrollTop(700);
+				$(window).scrollTop(500);
 			}
 		});
 
@@ -128,6 +128,7 @@ export const rooms = () => {
 			let btn = $(
 				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj</button>`
 			);
+
 			$(btn).on("click", e => {
 				if ($(dateInputFrom).val() === "" || $(dateInputTo).val() === "") {
 					$(window).scrollTop(0);

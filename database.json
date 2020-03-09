@@ -1,6 +1,5 @@
 {
-  "users": [
-    {
+  "users": [{
       "id": 1,
       "email": "",
       "password": ""
@@ -51,8 +50,7 @@
       "id": 11
     }
   ],
-  "rooms": [
-    {
+  "rooms": [{
       "id": 1,
       "name": "Pokój jednoosobowy",
       "image": "https://cdn.pixabay.com/photo/2018/06/14/21/17/room-3475665_1280.jpg",
@@ -85,8 +83,7 @@
       "price": 340
     }
   ],
-  "treatments": [
-    {
+  "treatments": [{
       "id": 1,
       "name": "Czekoladowa Rozkosz - zabieg wyszczuplająco - regenerujący",
       "text": "Zabieg wykorzystuje doskonałe właściwości aromaterapeutyczne, wyszczuplające i odżywcze czekolady. Intensywnie wygładza i ujędrnia skórę, redukuje objawy cellulitu i rewitalizuje zmęczoną skórę.",
@@ -116,7 +113,7 @@
     {
       "id": 4,
       "name": "Masaż hinduski głowy",
-      "text": "Masaż polecany jest osobom pracującym przy komputerze i prowadzącym siedzący tryb życia.Zalecany zwłaszcza przy bólach głowy oraz migrenach.",
+      "text": "Masaż polecany jest osobom pracującym przy komputerze i prowadzącym siedzący tryb życia. Zalecany zwłaszcza przy bólach głowy oraz migrenach.",
       "image": "https://image.freepik.com/darmowe-zdjecie/mezczyzna-cieszy-sie-masaz-twarzy_144627-18645.jpg",
       "area": "head",
       "time": 25,
@@ -125,7 +122,7 @@
     {
       "id": 5,
       "name": "Tajski masaż stóp",
-      "text": "Połączenie masażu z akupresurą stref refleksologicznych stóp.Technika masażu obejmuje m.in.masaż podeszwy, grzbietu stopy, palców, kostek, łydek, okolic kolana.",
+      "text": "Połączenie masażu z akupresurą stref refleksologicznych stóp. Technika masażu obejmuje m.in.masaż podeszwy, grzbietu stopy, palców, kostek, łydek, okolic kolana.",
       "image": "https://image.freepik.com/darmowe-zdjecie/kobieta-odbiera-uslugi-masazu-stop-z-masazystka-bliska-pod-reka-i-stop-zrelaksowac-sie-w-koncepcji-uslugi-terapii-masazu-stop_1150-13723.jpg",
       "area": "feet",
       "time": 50,
