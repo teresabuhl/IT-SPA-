@@ -22,26 +22,6 @@ export const login = () => {
 
     <!-- Password -->
     <input type="password" id="password" class="form-control mb-4" placeholder="Password">
-
-    <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-            </div>
-        </div>
-        <div>
-            <!-- Forgot password -->
-            <a href="">Forgot password?</a>
-        </div>
-    </div>
-
-    <!-- Sign in button -->
-
-    <!-- Register -->
-  
-    <!-- Social login -->
 `);
 
 	// const form = $(`<form class="login was-validated">
@@ -69,13 +49,6 @@ export const login = () => {
 	const register = $(`<p>Not a member?
         <a href="">Register</a>
 		</p>`);
-
-	const socialLogin = $(`<p>or sign in with:</p>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
-`);
 
 	btn.on("click", e => {
 		e.preventDefault();
@@ -111,7 +84,6 @@ export const login = () => {
 	$(container).append(form);
 	$(container).append(btn);
 	$(container).append(register);
-	$(container).append(socialLogin);
 	fragment.append(container);
 
 	return Promise.resolve(fragment);

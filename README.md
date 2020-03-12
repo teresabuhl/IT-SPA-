@@ -20,29 +20,29 @@ Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu. -->
 
 ## Rejestracja
 
-Stwórz komponent rejestracji użytkownika z opcjonalnym miernikiem siły hasła.
+<!-- Stwórz komponent rejestracji użytkownika z opcjonalnym miernikiem siły hasła.
 Rejestracja polega na zapisaniu danych użytkownika (e-mail i hasła) w pliku `database.json`.
-Nie powinna być możliwa rejestracja użytkownika o identycznym adresie e-mail.
+Nie powinna być możliwa rejestracja użytkownika o identycznym adresie e-mail. -->
 
 ## Logowanie
 
-Stwórz komponent logowania użytkownika, który opcjonalnie będzie wyświetlał avatar użytkownika.
-Logowanie polega na porównaniu podanych przez użytkownika danych (e-mail i hasła) z tymi w pliku `database.json`.
+<!-- Stwórz komponent logowania użytkownika, który opcjonalnie będzie wyświetlał avatar użytkownika.
+Logowanie polega na porównaniu podanych przez użytkownika danych (e-mail i hasła) z tymi w pliku `database.json`. -->
 
 ## Pokoje
 
-Bazę przykładowych pokoi w ośrodku IT SPA znajdziesz w pliku `database.json`.
-Możesz dowolnie zmienić istniejące pokoje lub dodać swoje własne.
+<!-- Bazę przykładowych pokoi w ośrodku IT SPA znajdziesz w pliku `database.json`.
+Możesz dowolnie zmienić istniejące pokoje lub dodać swoje własne. -->
 
 ## Zabiegi
 
-Bazę przykładowych zabiegów ośrodka IT SPA znajdziesz w pliku `database.json`.
-Możesz dowolnie zmienić istniejące zabiegi lub dodać swoje własne.
+<!-- Bazę przykładowych zabiegów ośrodka IT SPA znajdziesz w pliku `database.json`.
+Możesz dowolnie zmienić istniejące zabiegi lub dodać swoje własne. -->
 
 ## Koszyk
 
-Stwórz komponent koszyka, który po najechaniu myszką będzie wyświetlał dodane pokoje i zabiegi.
-Koszyk musi przetrwać przeładowanie strony, dlatego spróbuj wykorzystać ciasteczka (Cookies).
+<!-- Stwórz komponent koszyka, który po najechaniu myszką będzie wyświetlał dodane pokoje i zabiegi.
+Koszyk musi przetrwać przeładowanie strony, dlatego spróbuj wykorzystać ciasteczka (Cookies). -->
 
 ## Technologie
 

@@ -1,56 +1,23 @@
 {
-  "users": [{
-      "id": 1,
+  "users": [
+    {
+      "firstName": "Teresa",
+      "lastName": "Buhl",
+      "email": "gieeeo@wp.pl",
+      "password": "qwe",
+      "id": 13
+    },
+    {
+      "firstName": "",
+      "lastName": "",
       "email": "",
-      "password": ""
-    },
-    {
-      "email": "teresabuhl@wp.pl",
-      "password": "www",
-      "id": 3
-    },
-    {
-      "email": "wwww",
-      "password": "eee",
-      "id": 4
-    },
-    {
-      "email": "teresabuhl83@gmail.com",
-      "password": "eeee",
-      "id": 5
-    },
-    {
-      "email": "teresabuhl83@gmail.com",
-      "password": "eeee",
-      "id": 6
-    },
-    {
-      "email": "gio@wp.pl",
-      "password": "www",
-      "id": 7
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "wwwwww",
-      "id": 8
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "wwwwwwweew",
-      "id": 9
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "wwwwwwweew",
-      "id": 10
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "wwwwwwweew",
-      "id": 11
+      "password": "",
+      "id": 14
     }
   ],
-  "rooms": [{
+  "newsletters": [],
+  "rooms": [
+    {
       "id": 1,
       "name": "Pokój jednoosobowy",
       "image": "https://cdn.pixabay.com/photo/2018/06/14/21/17/room-3475665_1280.jpg",
@@ -83,7 +50,8 @@
       "price": 340
     }
   ],
-  "treatments": [{
+  "treatments": [
+    {
       "id": 1,
       "name": "Czekoladowa Rozkosz - zabieg wyszczuplająco - regenerujący",
       "text": "Zabieg wykorzystuje doskonałe właściwości aromaterapeutyczne, wyszczuplające i odżywcze czekolady. Intensywnie wygładza i ujędrnia skórę, redukuje objawy cellulitu i rewitalizuje zmęczoną skórę.",

@@ -7,9 +7,16 @@ body {
 }
 
 .register {
-  height: 100vh;
+  // height: 100vh;
   width: 40vw;
 
+  &_alert {
+    display: none;
+  }
+
+  &_active {
+    display: block;
+  }
 }
 
 .login {
