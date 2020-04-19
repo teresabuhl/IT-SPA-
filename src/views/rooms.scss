@@ -1,9 +1,9 @@
 .jumbotron-rooms {
-  background-image: url(../imges/cozy-modern-bedroom-3144580.jpg);
+  background-image: url(../assets/imges/bedroom.jpg);
+  background-position: 50% 50%;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 70vh;
+  height: 100vh;
+  margin-top: -10vh;
   display: flex;
   align-items: center;
 }

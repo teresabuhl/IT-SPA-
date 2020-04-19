@@ -1,6 +1,7 @@
 import $ from "jquery";
 import moment from "moment";
 import { Cart } from "../cart/cart";
+import trash from "../assets/icons/trash.svg";
 import "./booking.scss";
 
 export const booking = () => {
@@ -20,7 +21,7 @@ export const booking = () => {
 		return result;
 	};
 
-	const dateDiff = dateTime => {
+	const dateDiff = (dateTime) => {
 		const { dateFrom, dateTo } = dateTime;
 		const dateFirst = new moment(dateFrom);
 		const dateSec = new moment(dateTo);
@@ -29,7 +30,8 @@ export const booking = () => {
 		return duration.asDays();
 	};
 
-	const removeDataFromCookies = e => {
+	const removeDataFromCookies = (e) => {
+		// const buttonID = e.target.parentNode.parentNode;
 		const { name } = e.target;
 		console.log(name);
 		const result = cart.get().filter((item, key) => {
@@ -82,9 +84,11 @@ export const booking = () => {
 		$(table).append(tbody);
 
 		cart.get().map((item, key) => {
-			let btn = $(`<button class='btn_remove_order' name="${key}"></button>`);
-			$(btn).append(`<i class="fas fa-trash-alt"></i>`);
-			$(btn).on("click", e => {
+			let btn = $(
+				`<button class='btn_remove_order' name="${key}">${trash}</button>`
+			);
+
+			$(btn).on("click", (e) => {
 				removeDataFromCookies(e);
 			});
 			let tr = $(`

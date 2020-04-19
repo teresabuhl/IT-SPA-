@@ -2,27 +2,48 @@ import $ from "jquery";
 import { usersService } from "../common/users-service";
 import { routeChange } from "../router/route-change";
 import { main_router } from "../it-spa";
-import "./forms.scss";
+// import "./forms.scss";
+import "./login.scss";
 
 export const login = () => {
 	const fragment = $(new DocumentFragment());
 
-	// const getAllUsers = usersService.getUsers();
-	// console.log(getAllUsers);
+	const main = $(`
+	<div class="login-main background-image"></div>
+	`);
 
-	const container = $(
-		`<form class="text-center border border-light p-5 form login" action="#!"></form>`
-	);
+	const container = $(`
+		<div class="box"></div>
+	`);
 
 	const form = $(`
-	  <p class="h4 mb-4">Sign in</p>
+		<form action="#!">
+			<h2>Logowanie</h2>
+			<!-- Email -->
+			<div class="inputBox">
+				<input type="email" id="email" required>
+				<label>E-mail</label>
+			</div>
+			<!-- Password -->
+			<div class="inputBox">
+				<input type="password" id="password" required>
+				<label>Hasło</label>
+			</div>
+		</form>
+	`);
+	// const container = $(
+	// 	`<form class="text-center border border-light p-5 form login" action="#!"></form>`
+	// );
 
-    <!-- Email -->
-    <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+	// 	const form = $(`
+	// 	  <p class="h4 mb-4">Login</p>
 
-    <!-- Password -->
-    <input type="password" id="password" class="form-control mb-4" placeholder="Password">
-`);
+	//     <!-- Email -->
+	//     <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+
+	//     <!-- Password -->
+	//     <input type="password" id="password" class="form-control mb-4" placeholder="Password">
+	// `);
 
 	// const form = $(`<form class="login was-validated">
 	//   <div class="form-group">
@@ -42,28 +63,33 @@ export const login = () => {
 	//   </div>
 	// </form>
 	//   `);
-	const btn = $(
-		`<button class="btn btn-info btn-block my-4" type="submit">Zaloguj się</button>`
-	);
 
-	const register = $(`<p>Not a member?
-        <a href="">Register</a>
-		</p>`);
+	const btn = $(`
+	<button type="submit">Zaloguj</button>
+	`);
 
-	btn.on("click", e => {
+	// const btn = $(
+	// 	`<button class="btn btn-dark btn-block my-4" type="submit">Zaloguj się</button>`
+	// );
+
+	// const register = $(`<p>Not a member?
+	//       <a href="">Register</a>
+	// 	</p>`);
+
+	btn.on("click", (e) => {
 		e.preventDefault();
 		const email = $("#email").val();
 		const password = $("#password").val();
 		const obj = { email, password };
-		console.log(email, password);
+		// console.log(email, password);
 
 		let usersData = [];
 		fetch("http://localhost:3000/users")
-			.then(res => res.json())
-			.then(resJSON => {
+			.then((res) => res.json())
+			.then((resJSON) => {
 				console.log(resJSON);
 				usersData = resJSON;
-				let found = usersData.some(item => {
+				let found = usersData.some((item) => {
 					return item.email === email && item.password === password;
 				});
 				console.log(found);
@@ -76,15 +102,16 @@ export const login = () => {
 					// navbar.trigger(routeChange, { path: path });
 					main_router.navigate("/");
 				} else {
-					/// alert
+					alert("Nieprawidłowy email lub hasło");
 				}
 			});
 	});
 
+	$(form).append(btn);
 	$(container).append(form);
-	$(container).append(btn);
-	$(container).append(register);
-	fragment.append(container);
+	$(main).append(container);
+	// $(container).append(register);
+	fragment.append(main);
 
 	return Promise.resolve(fragment);
 };

@@ -1,11 +1,36 @@
 // @import '../node_modules/font-awesome/scss/font-awesome.scss';
 
-body {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  background-color: lightgray;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #ffffff;
   font-family: 'Montserrat', Helvetica, sans-serif;
 }
 
 .info {
   font-size: .9rem;
+}
+
+.background-image {
+  position: relative;
+}
+
+.background-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.background-image::after {
+  height: 220px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .8) 0, transparent 100%);
 }

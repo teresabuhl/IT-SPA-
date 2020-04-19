@@ -1,56 +1,56 @@
 import $ from "jquery";
 import { main_router } from "../it-spa";
 import validate from "jquery-validation";
-import "./forms.scss";
+import "./register.scss";
 
 export const register = () => {
 	const fragment = $(new DocumentFragment());
 
-	const registerUser = obj => {
-		fetch("http://localhost:3000/users", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(obj)
-		}).then(res => {
-			console.log(res);
-			if (res.status === 201) {
-				main_router.navigate("/login");
-			}
-		});
-	};
-
-	const container = $(`<form class="text-center border border-light p-5 form register" ></form>)
+	const main = $(`
+	<div class="register-main background-image"></div>
 	`);
 
+	const container = $(`<div class="box"></div>`);
+
 	const form = $(`
-    <p class="h4 mb-4">Sign up</p>
-
-    <div class="form-row mb-4">
-        <div class="col">
-            <!-- First name -->
-            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name">
-        </div>
-        <div class="col">
-            <!-- Last name -->
-            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name">
-        </div>
+	<form action="#!">
+    <h2>Rejestracja</h2>
+		<div class="name-main">
+				<!-- First name -->
+        <div class="inputBox firstName">
+          <input type="text" id="firstName" name="firstName" required>
+					<label>Imię</label>
+				</div>
+				<!-- Last name -->
+        <div class="inputBox lastName">
+          <input type="text" id="lastName" name="lastName" required>
+					<label>Nazwisko</label>				
+				</div>
     </div>
-
-    <!-- E-mail -->
-    <input type="email" id="email" name="email" required class="form-control mb-4" placeholder="E-mail">
-
-    <!-- Password -->
-    <input type="password" id="password" required class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+		<!-- E-mail -->
+		<div class="inputBox">
+    	<input type="email" id="email" name="email" required>
+			<label>E-mail</label>
+		</div?
+		<!-- Password -->
+		<div class="inputBox">
+    	<input type="password" id="password" required aria-describedby="defaultRegisterFormPasswordHelpBlock">
+			<label>Hasło</label>
+		</div>
+		<small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
-    </small>
+		</small>
+	</form>
 `);
 
 	const btn = $(`
-		<button type="submit" class="btn btn-info my-4 btn-block" type="submit">Zarejestruj się</button>`);
-	const alert = $(`<div class="alert alert-danger register_alert" role="alert">
-  Proszę uzupełnić wszystkie pola  
-</div>`);
+		<button type="submit" type="submit">Utwórz konto</button>`);
+
+	const alert = $(`
+	<div class="alert alert-danger register_alert" role="alert">
+  	Proszę uzupełnić wszystkie pola  
+	</div>`);
+
 	// $(container).validate({
 	// 	rules: {
 	// 		firstName: {
@@ -67,8 +67,20 @@ export const register = () => {
 	// });
 
 	// $(container).validate();
+	const registerUser = (obj) => {
+		fetch("http://localhost:3000/users", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(obj),
+		}).then((res) => {
+			console.log(res);
+			if (res.status === 201) {
+				main_router.navigate("/login");
+			}
+		});
+	};
 
-	btn.on("click", e => {
+	btn.on("click", (e) => {
 		e.preventDefault();
 		const firstName = $("#firstName").val();
 		const lastName = $("#lastName").val();
@@ -78,17 +90,17 @@ export const register = () => {
 		const obj = { firstName, lastName, email, password };
 		if (password.length > 6 && email.length > 6) {
 			fetch("http://localhost:3000/users")
-				.then(res => res.json())
-				.then(resJSON => {
+				.then((res) => res.json())
+				.then((resJSON) => {
 					console.log(resJSON);
-					let found = resJSON.some(item => {
+					let found = resJSON.some((item) => {
 						return item.email === email && item.password === password;
 					});
 					console.log(found);
 					if (!found) {
 						registerUser(obj);
 					} else {
-						alert("Użytkownik istnieje");
+						alert("Użytkownik już istnieje");
 					}
 				});
 		} else {
@@ -96,12 +108,13 @@ export const register = () => {
 		}
 	});
 
+	$(form).append(btn);
 	$(container).append(form);
-	$(container).append(btn);
 	$(container).append(alert);
+	$(main).append(container);
 	// $(container).append(socialRegister);
 	// $(container).append(termsOfService);
-	fragment.append(container);
+	fragment.append(main);
 
 	return Promise.resolve(fragment);
 };

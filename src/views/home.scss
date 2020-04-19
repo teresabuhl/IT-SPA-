@@ -1,6 +1,46 @@
-.container {}
+.carousel {
+  height: 100vh;
+  margin-top: -10vh;
+}
 
-.carousel-item-image {
-  background-image: url("../imges/spa-3184610_1920.jpg");
+.carousel-item-image-1 {
+  background-image: url(../assets/imges/spa-1.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.carousel-item-image-2 {
+  background-image: url(../assets/imges/bath.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.carousel-item-image-3 {
+  background-image: url(../assets/imges/lake-1.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.featurette-item-image-1 {
+  width: 500px;
+  height: 400px;
+  background-image: url(../assets/imges/lake-2.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.featurette-item-image-2 {
+  width: 500px;
+  height: 400px;
+  background-image: url(../assets/imges/treatments-1.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.featurette-item-image-3 {
+  width: 500px;
+  height: 400px;
+  background-image: url(../assets/imges/meal.jpg);
+  background-position: center;
   background-size: cover;
 }

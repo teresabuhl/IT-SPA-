@@ -1,0 +1,30 @@
+.register-main {
+  height: 100vh;
+  margin-top: -10vh;
+  background-image: url(../assets/imges/lake-3.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.name-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.firstName {
+  margin-right: 15px;
+}
+
+.lastName {
+  margin-left: 15px;
+}
+
+.register {
+  &_alert {
+    display: none;
+  }
+
+  &_active {
+    display: block;
+  }
+}

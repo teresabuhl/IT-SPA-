@@ -4,22 +4,27 @@ export const routes = [
 	{ name: "", path: "/", date: {}, component: home },
 	{ name: "Hotel", path: "/rooms", date: {}, component: rooms },
 	{
-		name: "SPA & WELLNESS",
+		name: "Spa & Wellness",
 		path: "/treatments",
 		date: {},
-		component: treatments
+		component: treatments,
 	},
-	{ name: "Koszyk", path: "/booking", date: {}, component: booking },
 	{
-		name: "Zaloguj się",
+		name: "Zaloguj",
 		path: "/login",
 		date: {},
-		component: login
+		component: login,
 	},
 	{
-		name: "Zarejestruj się",
+		name: "Zarejestruj",
 		path: "/register",
 		date: {},
-		component: register
-	}
+		component: register,
+	},
+	{
+		name: "Koszyk",
+		path: "/booking",
+		date: {},
+		component: booking,
+	},
 ];

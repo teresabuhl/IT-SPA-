@@ -13,7 +13,6 @@ export class Router {
 	mount(outlet) {
 		this.outlet = outlet;
 
-		//detail to np. { path: "/booking" }
 		this.body.on(routeChange, (event, detail) => {
 			this.navigate(detail.path);
 		});
@@ -24,7 +23,7 @@ export class Router {
 	}
 
 	get(path) {
-		return this.routes.find(route => route.path === path);
+		return this.routes.find((route) => route.path === path);
 	}
 
 	has(path) {
@@ -32,16 +31,11 @@ export class Router {
 	}
 
 	navigate(path, data = {}) {
-		//ściezka istnieje, mozna nawigowac
 		if (this.has(path)) {
-			// { path: "/booking", date: {}, component: booking }
 			const { component } = this.get(path);
-
-			component() //dostaje Promise zaw. html widoku
-				.then(html => {
-					//renderuje ten html wew. outlet
-					this.outlet.empty().append(html);
-				});
+			component().then((html) => {
+				this.outlet.empty().append(html);
+			});
 		} else {
 			const html = oops();
 			this.outlet.empty().append(html);

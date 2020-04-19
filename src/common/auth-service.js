@@ -4,26 +4,15 @@ export class Auth {
 	}
 
 	cookie() {
-		//PRZED: 'key1=val1; key2=val2; . . .'
 		const cookies = document.cookie.split(";");
-		//PO: ['key1=val1', 'key2=val2', . . .]
-		// const itSpaCookie = cookies.find(cookie => {
-		// 	console.log(cookie.startsWith(this.key));
-		// 	console.log(cookie.includes(this.key));
-		// 	cookie.includes(this.key);
-		// 	// return
-		// });
 
-		// console.log(cookies);
-		const itSpa = document.cookie.split(";").filter(c => {
-			// console.log(c.startsWith(" user_token"), c);
+		const itSpa = cookies.filter((c) => {
 			if (c.startsWith(" " + this.key)) {
 				return c;
 			}
 		});
 
 		console.log(itSpa);
-		//PO: 'IT_SPA_CART=wartosc' LUB undefind
 		if (itSpa.length > 0) {
 			return itSpa;
 		} else {
@@ -37,16 +26,11 @@ export class Auth {
 
 	get() {
 		if (this.exists()) {
-			//'IT_SPA_CART=wartosc'
 			console.log("check");
-			const itSpaCookie = this.cookie(); // 'IT_SPA_CART=[1, 2, 3]'
-			// console.log(itSpaCookie);
-			const cookieValue = itSpaCookie[0].split("=")[1]; // ['IT_SPA_CART', '[1, 2, 3]']
-			// const parsedValue = JSON.parse(cookieValue); // 'wartosc'
+			const itSpaCookie = this.cookie();
+			const cookieValue = itSpaCookie[0].split("=")[1];
 			return cookieValue;
 		} else {
-			// this.set([]);
-			// console.log("nope");
 			return undefined;
 		}
 	}
@@ -54,7 +38,6 @@ export class Auth {
 	set(value) {
 		console.log(value);
 		if (value === "dropSession") {
-			console.log("drop");
 			document.cookie = `${this.key}="";max-age="-1";expires="-1"`;
 		} else {
 			const date = new Date();

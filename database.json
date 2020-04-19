@@ -1,10 +1,9 @@
 {
-  "users": [
-    {
+  "users": [{
       "firstName": "Teresa",
       "lastName": "Buhl",
-      "email": "gieeeo@wp.pl",
-      "password": "qwe",
+      "email": "teresabuhl@wp.pl",
+      "password": "123456",
       "id": 13
     },
     {
@@ -16,8 +15,7 @@
     }
   ],
   "newsletters": [],
-  "rooms": [
-    {
+  "rooms": [{
       "id": 1,
       "name": "Pokój jednoosobowy",
       "image": "https://cdn.pixabay.com/photo/2018/06/14/21/17/room-3475665_1280.jpg",
@@ -50,8 +48,7 @@
       "price": 340
     }
   ],
-  "treatments": [
-    {
+  "treatments": [{
       "id": 1,
       "name": "Czekoladowa Rozkosz - zabieg wyszczuplająco - regenerujący",
       "text": "Zabieg wykorzystuje doskonałe właściwości aromaterapeutyczne, wyszczuplające i odżywcze czekolady. Intensywnie wygładza i ujędrnia skórę, redukuje objawy cellulitu i rewitalizuje zmęczoną skórę.",
@@ -104,15 +101,6 @@
       "area": "body",
       "time": 50,
       "price": 290
-    },
-    {
-      "id": 7,
-      "name": "Depilacja dyskiem twardym",
-      "text": "",
-      "image": "",
-      "area": "body",
-      "time": 45,
-      "price": 120
     }
   ]
 }

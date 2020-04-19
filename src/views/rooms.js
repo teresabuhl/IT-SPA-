@@ -26,16 +26,16 @@ export const rooms = () => {
 			name: offerName,
 			price: offerPrice,
 			type: "rooms",
-			dateTime: { dateFrom, dateTo }
+			dateTime: { dateFrom, dateTo },
 		});
 		cart.set(result);
 	};
 
 	// $(".add-to-cart").on("click", ());
 
-	return roomsService.getRooms().then(pokoje => {
+	return roomsService.getRooms().then((pokoje) => {
 		const jumbotron = $(
-			`<div class="jumbotron jumbotron-fluid jumbotron-rooms">`
+			`<div class="jumbotron jumbotron-fluid jumbotron-rooms background-image">`
 		);
 		const junboContainer = $(`<div class="container">`);
 		const dateReservation = $(`<div class="date-reservation">`);
@@ -93,7 +93,7 @@ export const rooms = () => {
 					"Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu"
 				);
 			} else {
-				$(window).scrollTop(500);
+				$(window).scrollTop(650);
 			}
 		});
 
@@ -113,23 +113,22 @@ export const rooms = () => {
 
 		$(container).append(containerRow);
 
-		pokoje.map((item, key) => {
-			// return
+		pokoje.map((item) => {
 			let cardDeck = $(`<div class="col-md-4"></div>`);
 			const card = $(`<div class="card mb-4 shadow-sm"></div>`);
 
 			const cardImg = $(`<img class="card-img-top" src=${item.image} alt="">`);
 
 			const cardBody = $(`<div class="card-body">
-				<h4 class="card-title">${item.name}</h4>
-				<h2 class="card-text">${item.price} zł<small class="text-muted">/ noc</small></h2>
+				<h4 class="card-title text-center">${item.name}</h4>
+				<h2 class="card-text text-center">${item.price} zł<small class="text-muted">/ noc</small></h2>
 				</div>`);
 
 			let btn = $(
-				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj</button>`
+				`<button type='button' class='btn btn-lg btn-block btn-outline-dark add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj</button>`
 			);
 
-			$(btn).on("click", e => {
+			$(btn).on("click", (e) => {
 				if ($(dateInputFrom).val() === "" || $(dateInputTo).val() === "") {
 					$(window).scrollTop(0);
 				} else {

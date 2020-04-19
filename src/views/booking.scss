@@ -1,15 +1,24 @@
-.btn_remove_order::before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f095";
-  display: inline-block;
-  padding-right: 3px;
-  vertical-align: middle;
-  font-weight: 900;
-}
+// .btn_remove_order::before {
+//   font-family: "Font Awesome 5 Free";
+//   content: "\f095";
+//   display: inline-block;
+//   padding-right: 3px;
+//   vertical-align: middle;
+//   font-weight: 900;
+// }
+
 
 .bookingContainer {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn_remove_order {
+  width: 40px;
+  height: 40px;
+  background: url(../assets/icons/trash.svg) no-repeat;
+  background-size: 60%;
+  background-position: 50%;
 }
