@@ -1,54 +1,42 @@
 import $ from "jquery";
 import moment from "moment";
 import { Cart } from "../cart/cart";
-import trash from "../assets/icons/trash.svg";
+import { cartUpdate } from "../navigation/cart-update";
 import "./booking.scss";
 
 export const booking = () => {
 	const fragment = $(new DocumentFragment());
 	const cart = new Cart();
 
-	const getValueFromCookies = () => {
-		console.log(cart.get());
-		const result = cart.get();
-		const router = new Router();
-		if (result.length === 0) {
-			// window.location("/rooms");
-			// router.navigate("/");
-			// console.log();
-			// router.init();
-		}
-		return result;
-	};
+	const main = $(`<div class="booking-main background-image"></div>`);
+	const container = $(`<div class="booking-box"></div>`);
+	const tableRes = $(`<div class="table-responsive-sm">`);
+
+	container.append(tableRes);
+	main.append(container);
+	fragment.append(main);
 
 	const dateDiff = (dateTime) => {
 		const { dateFrom, dateTo } = dateTime;
 		const dateFirst = new moment(dateFrom);
 		const dateSec = new moment(dateTo);
 		const duration = moment.duration(dateSec.diff(dateFirst));
-		console.log(duration.asDays());
 		return duration.asDays();
 	};
 
 	const removeDataFromCookies = (e) => {
-		// const buttonID = e.target.parentNode.parentNode;
 		const { name } = e.target;
-		console.log(name);
 		const result = cart.get().filter((item, key) => {
 			return key !== parseInt(name);
 		});
+
 		cart.set(result);
 		renderBookingList();
 	};
 
 	const summary = () => {
-		console.log(cart.get());
-		// return cart
-		// 	.get()
-		// 	.reduce((sum, curr) => (sum += parseFloat(curr.price)), 0)
-		// 	.toFixed(2);
 		let sum = 0;
-		cart.get().map((item, key) => {
+		cart.get().map((item) => {
 			if (item.type === "rooms") {
 				return (sum += parseFloat(item.price) * dateDiff(item.dateTime));
 			} else {
@@ -56,57 +44,67 @@ export const booking = () => {
 			}
 		});
 		return $(
-			`<tr class="table-success"><th colspan="8">RAZEM</th><th>${sum} zł</th></tr>`
+			`<tr class="table-sum"><th colspan="7">RAZEM</th><th>${sum} zł</th></tr>`
 		);
 	};
-	const renderBookingList = () => {
-		let container = $(`<div class="container bookingContainer"></div>`);
-		let table = $(
-			`<table class="table table-responsive-md table-striped bg-light">`
-		);
-		let thead = $(`<thead class="thead-dark">
-    	<tr>
-      	<th scope="col">#</th>
-				<th scope="col">Typ</th>
-      	<th scope="col">Nazwa</th>
-      	<th scope="col">Data przyjazdu</th>
-      	<th scope="col">Data wyjazdu</th>
-      	<th scope="col">Cena/Noc</th>
-      	<th scope="col-sm-4">Cena</th>
-      	<th scope="col">Ilość dni</th>
-				<th scope="col">Usuń</th>
-    	</tr>
-  	</thead>`);
-		let tbody = $("<tbody>");
 
-		$(container).append(table);
-		$(table).append(thead);
-		$(table).append(tbody);
+	const renderBookingList = () => {
+		container.empty();
+
+		if (cart.get().length == 0) {
+			const alert = $(
+				`<div class="alert alert-info alert-dismissible fade show w-100 p-5 mb-0 text-center text-light bg-transparent"></div>`
+			);
+
+			alert.text(`Twój koszyk jest pusty!`);
+
+			container.append(alert);
+			return;
+		}
+
+		const table = $(`<table class="table">`);
+		const thead = $(`<thead class="table-head">
+    	<tr class="table-row">
+      	<th scope="col">Nazwa</th>
+      	<th scope="col">Przyjazd</th>
+      	<th scope="col">Wyjazd</th>
+      	<th scope="col">Dni</th>
+      	<th scope="col">Cena</th>
+      	<th scope="col">Wartość</th>
+				<th scope="col"></th>
+    	</tr>
+	  </thead>`);
+
+		const tbody = $("<tbody>");
 
 		cart.get().map((item, key) => {
-			let btn = $(
-				`<button class='btn_remove_order' name="${key}">${trash}</button>`
+			const btn = $(
+				`<button class="btn_remove_order" name="${key}"><i class="fas fa-trash-alt"></button>`
 			);
 
 			$(btn).on("click", (e) => {
 				removeDataFromCookies(e);
+				$(document).trigger(cartUpdate);
 			});
-			let tr = $(`
-			<tr>
-				<th scope="row">${key + 1}</th>
-				<th scope="row">${item.type === "rooms" ? "Pokój" : "Zabieg"}</th>
-				<td>${item.name}</td>
-				<td>${item.type === "rooms" ? item.dateTime.dateFrom : "-"}</td>
-				<td>${item.type === "rooms" ? item.dateTime.dateTo : "-"}</td>
+
+			const tr = $(`
+			<tr class="table-row">
+				<td class="item-name">${item.name}</td>
+				<td class="item-date">${
+					item.type === "rooms" ? item.dateTime.dateFrom : "-"
+				}</td>
+				<td class="item-date">${item.type === "rooms" ? item.dateTime.dateTo : "-"}</td>
+				<td class="item-day">${
+					item.type === "rooms" ? dateDiff(item.dateTime) : "-"
+				}</td>
 				<td>${item.type === "rooms" ? `${item.price} zł` : "-"}</td>
-				<td>${
+				<td class="item-price">${
 					item.type === "rooms"
 						? item.price * dateDiff(item.dateTime)
 						: item.price
 				} zł</td>
-				<td>${item.type === "rooms" ? dateDiff(item.dateTime) : "-"}</td>
 			</tr>`);
-			let td = $(`<td>`);
+			const td = $(`<td>`);
 			$(td).append(btn);
 			$(tr).append(td);
 
@@ -114,8 +112,13 @@ export const booking = () => {
 		});
 
 		tbody.append(summary);
-		fragment.append(container);
+
+		table.append(thead);
+		table.append(tbody);
+
+		container.append(table);
 	};
+
 	renderBookingList();
 	return Promise.resolve(fragment);
 };

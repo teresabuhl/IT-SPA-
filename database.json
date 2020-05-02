@@ -1,5 +1,6 @@
 {
-  "users": [{
+  "users": [
+    {
       "firstName": "Teresa",
       "lastName": "Buhl",
       "email": "teresabuhl@wp.pl",
@@ -12,10 +13,25 @@
       "email": "",
       "password": "",
       "id": 14
+    },
+    {
+      "firstName": "Teresa",
+      "lastName": "Buhl",
+      "email": "teresabuhl@wp.pl",
+      "password": "12345678",
+      "id": 15
+    },
+    {
+      "firstName": "Bożena",
+      "lastName": "Buhl",
+      "email": "gio@wp.pl",
+      "password": "12345678",
+      "id": 16
     }
   ],
   "newsletters": [],
-  "rooms": [{
+  "rooms": [
+    {
       "id": 1,
       "name": "Pokój jednoosobowy",
       "image": "https://cdn.pixabay.com/photo/2018/06/14/21/17/room-3475665_1280.jpg",
@@ -48,7 +64,8 @@
       "price": 340
     }
   ],
-  "treatments": [{
+  "treatments": [
+    {
       "id": 1,
       "name": "Czekoladowa Rozkosz - zabieg wyszczuplająco - regenerujący",
       "text": "Zabieg wykorzystuje doskonałe właściwości aromaterapeutyczne, wyszczuplające i odżywcze czekolady. Intensywnie wygładza i ujędrnia skórę, redukuje objawy cellulitu i rewitalizuje zmęczoną skórę.",

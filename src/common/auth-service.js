@@ -1,23 +1,17 @@
+import { userLogin } from "../navigation/user-login";
+
 export class Auth {
 	constructor() {
 		this.key = "user_token";
 	}
 
 	cookie() {
-		const cookies = document.cookie.split(";");
+		let cookies = document.cookie.split(";");
 
-		const itSpa = cookies.filter((c) => {
-			if (c.startsWith(" " + this.key)) {
-				return c;
-			}
-		});
+		cookies = cookies.map((cookie) => cookie.trim());
+		const itSpaCookie = cookies.find((cookie) => cookie.startsWith(this.key));
 
-		console.log(itSpa);
-		if (itSpa.length > 0) {
-			return itSpa;
-		} else {
-			return undefined;
-		}
+		return itSpaCookie;
 	}
 
 	exists() {
@@ -26,9 +20,8 @@ export class Auth {
 
 	get() {
 		if (this.exists()) {
-			console.log("check");
 			const itSpaCookie = this.cookie();
-			const cookieValue = itSpaCookie[0].split("=")[1];
+			const cookieValue = itSpaCookie.split("=")[1];
 			return cookieValue;
 		} else {
 			return undefined;
@@ -36,16 +29,16 @@ export class Auth {
 	}
 
 	set(value) {
+		console.log("auth set");
 		console.log(value);
 		if (value === "dropSession") {
-			document.cookie = `${this.key}="";max-age="-1";expires="-1"`;
+			document.cookie = `${this.key}="";expires="Thu, 01 Jan 1970 00:00:00 UTC"`;
 		} else {
 			const date = new Date();
 			const time = date.getTime();
 			const expireTime = time + 1000 * 3600;
 			date.setTime(expireTime);
 
-			const stringifiedValue = JSON.stringify(value);
 			document.cookie = `${this.key}=${value};expires=${date}`;
 		}
 	}

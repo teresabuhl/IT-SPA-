@@ -1,7 +1,3 @@
-.navbar-ul {
-  position: absolute;
-}
-
 .nav-link {
   cursor: pointer;
   position: relative;
@@ -22,7 +18,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   background: #fff;
   overflow: hidden;
   z-index: -1;
@@ -42,7 +38,7 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   background: #fff;
   overflow: hidden;
   z-index: -1;
@@ -54,4 +50,37 @@
 .nav-link:hover:after {
   transform: scaleX(1);
   transform-origin: right;
+}
+
+.nav-link-active::before {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+.nav-link-active::after {
+  transform: scaleX(1) !important;
+  transform-origin: right !important;
+}
+
+.shopping-basket {
+  cursor: pointer;
+  font-size: 32px;
+}
+
+.shopping-cart-count {
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  background-color: rgba(71, 66, 66, 0.7);
+  border: 1.5px solid #fff;
+  color: #fff;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  right: -12px;
+  top: 0;
 }

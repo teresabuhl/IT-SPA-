@@ -2,26 +2,22 @@ import $ from "jquery";
 import { roomsService } from "../common/rooms-service";
 import moment from "moment";
 import { Cart } from "../cart/cart";
+import { cartUpdate } from "../navigation/cart-update";
 import "./rooms.scss";
 // import { roomsList } from "./rooms-list";
 
 export const rooms = () => {
 	const fragment = $(new DocumentFragment());
 
-	// .append('<h2>Rooms</h2>')
-	// .append(roomsList(pokoje))
-	// .append('<p>Lorem ipsum dolor sit amet...</p>')
 	const cart = new Cart();
 
 	const setCookies = (e, dateFrom, dateTo) => {
 		const { name } = e.target;
-		console.log(name);
 		const offerName = name.split(";")[0];
 		const offerPrice = name.split(";")[1];
-		console.log(offerName, offerPrice);
-		// console.log(name);
+
 		const result = cart.get();
-		console.log(result);
+
 		result.push({
 			name: offerName,
 			price: offerPrice,
@@ -30,8 +26,6 @@ export const rooms = () => {
 		});
 		cart.set(result);
 	};
-
-	// $(".add-to-cart").on("click", ());
 
 	return roomsService.getRooms().then((pokoje) => {
 		const jumbotron = $(
@@ -65,19 +59,18 @@ export const rooms = () => {
 			const date = new Date().getTime();
 			const dateFrom = new Date($(dateInputFrom).val()).getTime();
 			const dateTo = new Date($(dateInputTo).val()).getTime();
-			console.log(
-				date,
-				dateFrom,
-				dateTo,
-				date < dateFrom,
-				date < dateTo,
-				dateTo < dateFrom
-			);
+			// console.log(
+			// 	date,
+			// 	dateFrom,
+			// 	dateTo,
+			// 	date < dateFrom,
+			// 	date < dateTo,
+			// 	dateTo < dateFrom
+			// );
 
 			const dateFirst = new moment(date);
 			const dateSec = new moment(dateTo);
 			const duration = moment.duration(dateSec.diff(dateFirst));
-			console.log(duration.asYears());
 
 			if (
 				$(dateInputFrom).val() === "" ||
@@ -87,7 +80,6 @@ export const rooms = () => {
 				dateTo < dateFrom
 			) {
 				alert("Error");
-				// $(dateInputFrom).toggleClass;
 			} else if (duration.asYears() > 1) {
 				alert(
 					"Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu"
@@ -124,8 +116,28 @@ export const rooms = () => {
 				<h2 class="card-text text-center">${item.price} zł<small class="text-muted">/ noc</small></h2>
 				</div>`);
 
+			const modal = $(`
+			<div class="modal fade" id="reservation">
+				<div class="modal-dialog modal-dialog-centered modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Sukces</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+							Dodano pokój do koszyka!
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+						</div>
+
+						</div>
+				</div>
+			</div>
+		`);
+
 			let btn = $(
-				`<button type='button' class='btn btn-lg btn-block btn-outline-dark add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj</button>`
+				`<button type='button' class='btn btn-lg btn-block btn-outline-primary add-to-cart' name="${item.name};${item.price}" data-toggle="modal" data-target="#reservation">Rezerwuj</button>`
 			);
 
 			$(btn).on("click", (e) => {
@@ -133,9 +145,11 @@ export const rooms = () => {
 					$(window).scrollTop(0);
 				} else {
 					setCookies(e, $(dateInputFrom).val(), $(dateInputTo).val());
+					$(document).trigger(cartUpdate);
 				}
 			});
 
+			fragment.append(modal);
 			$(containerRow).append(cardDeck);
 			$(cardDeck).append(card);
 			$(card).append(cardImg);
@@ -143,13 +157,6 @@ export const rooms = () => {
 			$(cardBody).append(btn);
 			fragment.append(container);
 		});
-		// ${Cart.set(
-		// item.name
-		// )}
 		return fragment;
 	});
 };
-
-{
-	/* <i class="fas fa-shopping-cart"></i>; */
-}

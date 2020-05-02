@@ -1,6 +1,7 @@
 import $ from "jquery";
 import { Cart } from "../cart/cart";
 import { treatmentsService } from "../common/treatments-service";
+import { cartUpdate } from "../navigation/cart-update";
 import "./treatments.scss";
 
 export const treatments = () => {
@@ -8,17 +9,12 @@ export const treatments = () => {
 
 	const cart = new Cart();
 
-	const setCookies = (e) => {
-		const { name } = e.target;
-		console.log(name);
-		const offerName = name.split(";")[0];
-		const offerPrice = name.split(";")[1];
-		console.log(offerName, offerPrice);
-
+	const appendToCart = (name, price) => {
 		const result = cart.get();
-		console.log(result);
-		result.push({ name: offerName, price: offerPrice, type: "treatments" });
+		result.push({ name, price, type: "treatments" });
 		cart.set(result);
+
+		$(document).trigger(cartUpdate);
 	};
 
 	return treatmentsService.getTreatments().then((treat) => {
@@ -38,6 +34,28 @@ export const treatments = () => {
 
 		$(container).append(containerRow);
 
+		const modal = $(`
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog modal-dialog-centered modal-sm">
+		 		 <div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Sukces</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						Dodano usługę do koszyka!
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+					</div>
+
+		  		</div>
+			</div>
+	  </div>
+		`);
+
+		fragment.append(modal);
+
 		treat.map((item, key) => {
 			let cardDeck = $(`<div class="col-md-4"></div>`);
 			let card = $(`<div class="card mb-4 shadow-sm"></div>`);
@@ -49,11 +67,11 @@ export const treatments = () => {
 				</div>`);
 
 			let btn = $(
-				`<button type="button" class="btn btn-lg btn-block btn-outline-primary add-to-cart" name="${item.name};${item.price}">Rezerwuj</button>`
+				`<button type="button" class="btn btn-lg btn-block btn-outline-primary add-to-cart" data-toggle="modal" data-target="#myModal">Rezerwuj</button>`
 			);
 
 			$(btn).on("click", (e) => {
-				setCookies(e);
+				appendToCart(item.name, item.price);
 			});
 
 			$(containerRow).append(cardDeck);

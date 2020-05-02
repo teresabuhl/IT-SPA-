@@ -16,21 +16,21 @@ export const home = () => {
       <div class="w-100 h-100 background-image carousel-item-image-1"></div>
       <div class="carousel-caption d-none d-md-block text-left">
         <h1>Wyjątkowe miejsce odnowy</h1>
-        <h5>Kompleksowa oferta SPA oraz luksusowe zabiegi pielęgnacyjne pozwalają doświadczyć prawdziwego relaksu oraz skutecznie zregenerować ciało i rozpieścić zmysły.</h5>
+        <p class="carousel-paragraph">Kompleksowa oferta SPA oraz luksusowe zabiegi pielęgnacyjne pozwalają doświadczyć prawdziwego relaksu oraz skutecznie zregenerować ciało i rozpieścić zmysły.</p>
       </div>
     </div>
     <div class="carousel-item  h-100">
       <div class="w-100 h-100 background-image carousel-item-image-2"></div>
       <div class="carousel-caption d-none d-md-block">
         <h1>Chwila relaksu dla każdego</h1>
-        <h5>Kompleksowa, profesjonalna pielęgnacja twarzy i ciała w wyjątkowej atmosferze, pod okiem naszych specjalistów.</h5>
+        <p class="carousel-paragraph">Kompleksowa, profesjonalna pielęgnacja twarzy i ciała w wyjątkowej atmosferze, pod okiem naszych specjalistów.</p>
       </div>
     </div>
     <div class="carousel-item h-100">
       <div class="w-100 h-100 background-image carousel-item-image-3"></div>
       <div class="carousel-caption d-none d-md-block text-right">
         <h1>Wzpoczynek nad jeziorem</h1>
-        <h5>Doskonała lokalizacja tuż nad brzegiem jeziora gwarantuje bogaty wybór aktywności: spacery, nordic walking, możliwość łowienia ryb, korzystanie z rowerów wodnych bądź łódki.</h5>
+        <p class="carousel-paragraph">Doskonała lokalizacja tuż nad brzegiem jeziora gwarantuje bogaty wybór aktywności: spacery, nordic walking, możliwość łowienia ryb, korzystanie z rowerów wodnych bądź łódki.</p>
       </div>
     </div>
   </div>

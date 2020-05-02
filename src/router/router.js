@@ -32,10 +32,19 @@ export class Router {
 
 	navigate(path, data = {}) {
 		if (this.has(path)) {
-			const { component } = this.get(path);
+			const { component, name } = this.get(path);
 			component().then((html) => {
 				this.outlet.empty().append(html);
 			});
+
+			// "Zbiera" wszystkie linki z nawigacji i sprawdza dla który powinien byćaktywny i usrtawia go jako aktywny
+			$(".nav-link")
+				.removeClass("nav-link-active")
+				.each((i, element) => {
+					if ($(element).text() === name) {
+						$(element).addClass("nav-link-active");
+					}
+				});
 		} else {
 			const html = oops();
 			this.outlet.empty().append(html);

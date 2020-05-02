@@ -1,7 +1,7 @@
 import { home, rooms, treatments, booking, login, register } from "../views";
 
 export const routes = [
-	{ name: "", path: "/", date: {}, component: home },
+	{ name: "Strona główna", path: "/", date: {}, component: home },
 	{ name: "Hotel", path: "/rooms", date: {}, component: rooms },
 	{
 		name: "Spa & Wellness",

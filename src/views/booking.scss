@@ -1,24 +1,65 @@
-// .btn_remove_order::before {
-//   font-family: "Font Awesome 5 Free";
-//   content: "\f095";
-//   display: inline-block;
-//   padding-right: 3px;
-//   vertical-align: middle;
-//   font-weight: 900;
-// }
-
-
-.bookingContainer {
+.booking-main {
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: -10vh;
+  background-image: url(../assets/imges/herbs.jpg);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.booking-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 .btn_remove_order {
-  width: 40px;
-  height: 40px;
-  background: url(../assets/icons/trash.svg) no-repeat;
-  background-size: 60%;
-  background-position: 50%;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
+.btn_remove_order i {
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+}
+
+.table-head {
+  color: #fff;
+  background-color: transparent;
+}
+
+.table-row {
+  th {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  td {
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .item-name {
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .item-date {
+    font-size: 14px;
+  }
+}
+
+.table-sum {
+  background-color: transparent;
+  color: #fff;
 }
