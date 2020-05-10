@@ -17,18 +17,18 @@ export const register = () => {
 		<div class="name-main">
 				<!-- First name -->
         <div class="inputBox firstName">
-          <input type="text" id="firstName" name="firstName" required>
+          <input type="text" id="firstName" name="firstName" autocomplete="off" required>
 					<label>Imię</label>
 				</div>
 				<!-- Last name -->
         <div class="inputBox lastName">
-          <input type="text" id="lastName" name="lastName" required>
+          <input type="text" id="lastName" name="lastName" autocomplete="off" required>
 					<label>Nazwisko</label>				
 				</div>
     </div>
 		<!-- E-mail -->
 		<div class="inputBox">
-    	<input type="email" id="email" name="email" required>
+    	<input type="email" id="email" name="email" autocomplete="off" required>
 			<label>E-mail</label>
 		</div?
 		<!-- Password -->

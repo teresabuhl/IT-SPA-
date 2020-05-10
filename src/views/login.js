@@ -22,12 +22,12 @@ export const login = () => {
 			<h2>Logowanie</h2>
 			<!-- Email -->
 			<div class="inputBox">
-				<input type="email" id="email" required>
+				<input type="email" id="email" autocomplete="off" required>
 				<label>E-mail</label>
 			</div>
 			<!-- Password -->
 			<div class="inputBox">
-				<input type="password" id="password" required>
+				<input type="password" id="password" autocomplete="off" required>
 				<label>Hasło</label>
 			</div>
 		</form>
@@ -37,7 +37,6 @@ export const login = () => {
 	<button type="submit">Zaloguj</button>
 	`);
 
-	// Alert i funkcje odpowiedzialne za jego ukrywanie i pokazywanie oraz ustawianie tekstu w nim wyświetlanego
 	const alert = $(
 		`<div class="alert alert-danger alert-dismissible fade show mt-4 mb-4">`
 	);
@@ -80,11 +79,7 @@ export const login = () => {
 
 				if (found) {
 					auth.set(email);
-
-					// Wywołujemy zdarzenei zalogowania się uzytkownika, które jest nasłuchiwane w "nav-item" w nawigacji (w celu zmiany tekstu w linku do formularza logowania)
-					console.log("trigger userLogin");
 					$(document).trigger(userLogin);
-
 					$(document.body).trigger(routeChange, { path: "/" });
 				} else {
 					showAlert("Nieprawidłowy e-mail lub hasło!");

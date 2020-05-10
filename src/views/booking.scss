@@ -9,10 +9,13 @@
 .booking-box {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 45%;
   transform: translate(-50%, -50%);
-  width: 900px;
-  padding: 10px;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 5%;
+  box-sizing: border-box;
+  padding: 15px;
   background: rgba(0, 0, 0, 0.7);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -62,4 +65,24 @@
 .table-sum {
   background-color: transparent;
   color: #fff;
+}
+
+@media screen and (max-width:992px) {
+  .table-row {
+
+    td:nth-child(2),
+    td:nth-child(3) {
+      display: none;
+    }
+  }
+
+  .table-sum,
+  .table-head {
+
+    th:nth-child(2),
+    th:nth-child(3) {
+      display: none;
+    }
+  }
+
 }

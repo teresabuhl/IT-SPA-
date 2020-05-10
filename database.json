@@ -5,31 +5,23 @@
       "lastName": "Buhl",
       "email": "teresabuhl@wp.pl",
       "password": "123456",
-      "id": 13
-    },
-    {
-      "firstName": "",
-      "lastName": "",
-      "email": "",
-      "password": "",
-      "id": 14
-    },
-    {
-      "firstName": "Teresa",
-      "lastName": "Buhl",
-      "email": "teresabuhl@wp.pl",
-      "password": "12345678",
-      "id": 15
-    },
-    {
-      "firstName": "Bożena",
-      "lastName": "Buhl",
-      "email": "gio@wp.pl",
-      "password": "12345678",
-      "id": 16
+      "id": 1
     }
   ],
-  "newsletters": [],
+  "newsletters": [
+    {
+      "email": "teresabuhl@wp.pl",
+      "id": 1
+    },
+    {
+      "email": "teresa@wp.pl",
+      "id": 2
+    },
+    {
+      "email": "teres@ey.pl",
+      "id": 3
+    }
+  ],
   "rooms": [
     {
       "id": 1,

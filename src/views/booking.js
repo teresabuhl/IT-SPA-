@@ -24,8 +24,7 @@ export const booking = () => {
 		return duration.asDays();
 	};
 
-	const removeDataFromCookies = (e) => {
-		const { name } = e.target;
+	const removeDataFromCookies = (name) => {
 		const result = cart.get().filter((item, key) => {
 			return key !== parseInt(name);
 		});
@@ -44,7 +43,7 @@ export const booking = () => {
 			}
 		});
 		return $(
-			`<tr class="table-sum"><th colspan="7">RAZEM</th><th>${sum} zł</th></tr>`
+			`<tr class="table-sum"><th colspan="3">RAZEM</th><th></th><th></th><th class="text-center">${sum} zł</th><th></th></tr>`
 		);
 	};
 
@@ -62,7 +61,7 @@ export const booking = () => {
 			return;
 		}
 
-		const table = $(`<table class="table">`);
+		const table = $(`<table class="table m-0">`);
 		const thead = $(`<thead class="table-head">
     	<tr class="table-row">
       	<th scope="col">Nazwa</th>
@@ -78,12 +77,14 @@ export const booking = () => {
 		const tbody = $("<tbody>");
 
 		cart.get().map((item, key) => {
-			const btn = $(
-				`<button class="btn_remove_order" name="${key}"><i class="fas fa-trash-alt"></button>`
-			);
+			const btn = $(`<button class="btn_remove_order" name="${key}">`);
+			const icon = $(`<i class="fas fa-trash-alt">`);
+
+			btn.append(icon);
 
 			$(btn).on("click", (e) => {
-				removeDataFromCookies(e);
+				let name = $(btn).attr("name");
+				removeDataFromCookies(name);
 				$(document).trigger(cartUpdate);
 			});
 
@@ -107,15 +108,12 @@ export const booking = () => {
 			const td = $(`<td>`);
 			$(td).append(btn);
 			$(tr).append(td);
-
 			return $(tbody).append(tr);
 		});
 
 		tbody.append(summary);
-
 		table.append(thead);
 		table.append(tbody);
-
 		container.append(table);
 	};
 

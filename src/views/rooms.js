@@ -4,7 +4,6 @@ import moment from "moment";
 import { Cart } from "../cart/cart";
 import { cartUpdate } from "../navigation/cart-update";
 import "./rooms.scss";
-// import { roomsList } from "./rooms-list";
 
 export const rooms = () => {
 	const fragment = $(new DocumentFragment());
@@ -34,20 +33,20 @@ export const rooms = () => {
 		const junboContainer = $(`<div class="container">`);
 		const dateReservation = $(`<div class="date-reservation">`);
 		const formItemFrom = $(
-			`<div class="form-item"><label for="date">Przyjazd</label></div>`
+			`<div class="form-item"><label class="m-1 mx-3" for="date">Przyjazd</label><i class="far fa-calendar-alt"></i></div>`
 		);
 		const formItemTo = $(
-			`<div class="form-item"><label for="date">Wyjazd</label></div>`
+			`<div class="form-item"><label class="m-1 mx-3" for="date">Wyjazd</label><i class="far fa-calendar-alt"></i></div>`
 		);
 		const dateInputFrom = $(`<input
 						type="date"
-						class="form-control"
+						class="form-control date-input-from"
 						id="date"
 						placeholder="select"
 					/>`);
 		const dateInputTo = $(`<input
 						type="date"
-						class="form-control"
+						class="form-control date-input-to"
 						id="date"
 						placeholder="select"
 					/>`);
@@ -59,14 +58,6 @@ export const rooms = () => {
 			const date = new Date().getTime();
 			const dateFrom = new Date($(dateInputFrom).val()).getTime();
 			const dateTo = new Date($(dateInputTo).val()).getTime();
-			// console.log(
-			// 	date,
-			// 	dateFrom,
-			// 	dateTo,
-			// 	date < dateFrom,
-			// 	date < dateTo,
-			// 	dateTo < dateFrom
-			// );
 
 			const dateFirst = new moment(date);
 			const dateSec = new moment(dateTo);
@@ -79,11 +70,13 @@ export const rooms = () => {
 				date > dateTo ||
 				dateTo < dateFrom
 			) {
-				alert("Error");
+				$("#reservation .modal-body").text("Wybierz okres pobytu");
+				$("#reservation").modal();
 			} else if (duration.asYears() > 1) {
-				alert(
+				$("#reservation .modal-body").text(
 					"Wybrana data wyjazdu nie może być dalsza niż rok od daty przyjazdu"
 				);
+				$("#reservation").modal();
 			} else {
 				$(window).scrollTop(650);
 			}
@@ -142,10 +135,15 @@ export const rooms = () => {
 
 			$(btn).on("click", (e) => {
 				if ($(dateInputFrom).val() === "" || $(dateInputTo).val() === "") {
+					$("#reservation .modal-body").text("Wybierz okres pobytu");
+					$("#reservation").modal();
 					$(window).scrollTop(0);
 				} else {
+					$("#reservation .modal-body").text("Dodano pokój do koszyka");
+					$("#reservation").modal();
 					setCookies(e, $(dateInputFrom).val(), $(dateInputTo).val());
 					$(document).trigger(cartUpdate);
+					$(window).scrollTop(0);
 				}
 			});
 
