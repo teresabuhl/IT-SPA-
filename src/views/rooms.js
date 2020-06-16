@@ -70,7 +70,8 @@ export const rooms = () => {
 				date > dateTo ||
 				dateTo < dateFrom
 			) {
-				$("#reservation .modal-body").text("Wybierz okres pobytu");
+				$("#reservation .modal-title").text("Uwaga");
+				$("#reservation .modal-body").text("Wybierz poprawny okres pobytu");
 				$("#reservation").modal();
 			} else if (duration.asYears() > 1) {
 				$("#reservation .modal-body").text(
@@ -135,6 +136,7 @@ export const rooms = () => {
 
 			$(btn).on("click", (e) => {
 				if ($(dateInputFrom).val() === "" || $(dateInputTo).val() === "") {
+					$("#reservation .modal-title").text("Uwaga");
 					$("#reservation .modal-body").text("Wybierz okres pobytu");
 					$("#reservation").modal();
 					$(window).scrollTop(0);
